@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cuentas</title>
+    <link rel="shortcut icon" href="./image/banco.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="./accountStile/estilo.css">
+    <link rel="stylesheet" href="./accountStile/estilo.css">
+</head>
+
+<body class="">
+
+    <div id="app" class="d-flex col-12">
+
+        <header class="cabeza d-flex flex-column justify-content-center">
+
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#">Account</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Cards</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Transactions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Loans</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="navbar-brand" href="#"><img src="./image/banco.png" alt=""></a>
+                </div>
+            </nav>
+
+        </header>
+
+        <main class="d-flex col-10 gap-3 cuerpa flex-grow-1">
+            <div class="eldiv">
+                <h1 class="fw-bold d-flex justify-content-start">Bienvenida Cliente!</h1>
+            </div>
+            <template v-if="accounts.length > 0" v-for="account of accounts">
+                <div class="contenedor">
+                    <section class="tarjeta">
+                        <div class="delantera">
+                            <div class="grupo">
+                                <p class="label">Número de Cuenta</p>
+                                <p class="numero">{{account.number}}</p>
+                            </div>
+
+                            <div class="grupo">
+                                <p class="label">Saldo</p>
+                                <p class="numero">{{account.balance}}</p>
+                            </div>
+
+                            <div class="grupo">
+                                <p class="label">Expiracion</p>
+                                <p class="numero">{{account.dateTime}}</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </template>
+
+
+            <div id="carouselExampleIndicators" class=" calecita  carousel slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="./image/Familia-Banco-1.png" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./image/dia-del-cine-2.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./image/iStock-1056867534-1024x683.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+
+
+
+        </main>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./account.js"></script>
+
+</body>
+
+</html>
