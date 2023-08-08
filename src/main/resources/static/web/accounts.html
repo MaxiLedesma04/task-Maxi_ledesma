@@ -58,23 +58,23 @@
             <div class="eldiv">
                 <h1 class="fw-bold d-flex justify-content-start">Bienvenida Cliente!</h1>
             </div>
-            <template>
+            <template v-if="accounts.length > 0" v-for="account of accounts">
                 <div class="contenedor">
                     <section class="tarjeta">
                         <div class="delantera">
                             <div class="grupo">
                                 <p class="label">Número de Cuenta</p>
-                                <p class="numero"></p>
+                                <p class="numero">{{account.number}}</p>
                             </div>
 
                             <div class="grupo">
                                 <p class="label">Saldo</p>
-                                <p class="numero"></p>
+                                <p class="numero">{{account.balance}}</p>
                             </div>
 
                             <div class="grupo">
                                 <p class="label">Expiracion</p>
-                                <p class="numero"></p>
+                                <p class="numero">{{account.dateTime}}</p>
                             </div>
                         </div>
                     </section>

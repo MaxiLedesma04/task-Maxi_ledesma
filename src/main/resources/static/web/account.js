@@ -1,11 +1,10 @@
 const { createApp } = Vue
-const url = "http://localhost:8080/api/clients/1"
+const url = "http://localhost:8080/api/accounts"
 const options = {
     data() {
         return {
-            clients: [],
-            clients_accounts: [],
-            accounts: [],
+            accountId:[],
+            transactions:[],
         };
     },
     created() {
@@ -15,24 +14,13 @@ const options = {
         loadData() {
             axios.get(url)
                 .then(response => {
-                    this.clients = response.data
-                    console.log(this.clients)
-                    this.clients_accounts = this.clients.accounts
-                    const numberF = Intl.NumberFormat('es-US', {
-                        style: 'currency',
-                        currency: 'USD',
-                        maximumSignificantDigits: 1
+                    const parameter = location.search
+                    const parameters = new URLSearchParams(parameter)
+                    const idParameters = parameters.get("id")
+                    const allAccounts = response.data
+                    this.accountId = allAccounts.find(idAccount => idAccount.id == idParameters)
+                    this.transactions = this.accountId.transactionDTOSet
                     })
-                    for (const accounts of this.clients_accounts) {
-                        const aux = {
-                            number: accounts.number,
-                            dateTime: accounts.dateTime,
-                            balance: numberF.format(accounts.balance),
-                        }
-                        this.accounts.push(aux)
-                    }
-
-                })
                 .catch(error => console.error(error))
         },
     }
@@ -40,10 +28,4 @@ const options = {
 }
 const app = createApp(options)
     .mount('#app')
-
-
-
-
-
-
 
