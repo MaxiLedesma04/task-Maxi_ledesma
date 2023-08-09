@@ -1,10 +1,10 @@
 const { createApp } = Vue
-const url = "http://localhost:8080/api/accounts"
+const url = "http://localhost:8080/rest/accounts/1"
 const options = {
     data() {
         return {
-            accountId:[],
-            transactions:[],
+            accountId: [],
+            transactions: [],
         };
     },
     created() {
