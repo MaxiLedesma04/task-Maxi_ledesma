@@ -44,6 +44,7 @@ public class HomebankingApplication {
 			account1.addTransaction(transaction1);
 			account1.addTransaction(transaction2);
 			account2.addTransaction(transaction2_1);
+			account2.addTransaction(transaction2_2);
 
 
 			repositoryClient.save(melba);

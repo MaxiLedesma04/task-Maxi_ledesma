@@ -21,7 +21,7 @@ public class AccountController {
         return accountRepository.findAll().stream().map(AccountsDTO::new).collect(toList());
     }
 
-    @RequestMapping("api/accoutns/{id}")
+    @RequestMapping("api/accounts/{id}")
     public AccountsDTO getAccount(@PathVariable Long id){
         return accountRepository.findById(id).map(AccountsDTO::new).orElse(null);
     }
