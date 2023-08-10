@@ -26,7 +26,7 @@ public class HomebankingApplication {
 
 		return (args) -> {
 			LocalDateTime today = LocalDate.now().atStartOfDay();
-			LocalDateTime tomorrow = today.plusDays(1);
+			LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
 			LocalDateTime date = LocalDateTime.now();
 
 
@@ -38,8 +38,8 @@ public class HomebankingApplication {
 
 			Transaction transaction1 = new Transaction(5555, "venta", date, TransactionType.Credit);
 			Transaction transaction2 = new Transaction(-4442, "compra", date, TransactionType.Debit);
-			Transaction transaction2_1 = new Transaction(4561, "venta", date, TransactionType.Credit);
-			Transaction transaction2_2 = new Transaction(-1238, "compra", date, TransactionType.Debit);
+			Transaction transaction2_1 = new Transaction(4561, "venta", tomorrow, TransactionType.Credit);
+			Transaction transaction2_2 = new Transaction(-1238, "compra", tomorrow, TransactionType.Debit);
 
 			account1.addTransaction(transaction1);
 			account1.addTransaction(transaction2);

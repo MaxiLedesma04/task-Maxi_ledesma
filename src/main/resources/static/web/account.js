@@ -1,5 +1,5 @@
 const { createApp } = Vue
-const url = "http://localhost:8080/api/accounts/1"
+const url = ("http://localhost:8080/api/accounts/")
 const options = {
     data() {
         return {
@@ -13,13 +13,15 @@ const options = {
     },
     methods: {
         loadData() {
-            axios.get(url)
+            const parametro = location.search
+            const nuevoparametro = new URLSearchParams(parametro)
+            this.parametroId = nuevoparametro.get("id")
+            console.log(this.parametroId)
+            axios.get(url + this.parametroId)
                 .then(response => {
                     this.accounts = response.data
-                    const parametro = location.search
-                    const nuevoparametro = new URLSearchParams(parametro)
-                    this.parametroId = nuevoparametro.get("id")
                     this.transactions = this.accounts.transactions.sort((a,b)=> b.id - a.id)
+                    console.log(this.transactions)
                     })
                 .catch(error => console.error(error))
         },

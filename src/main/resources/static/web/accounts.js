@@ -18,6 +18,7 @@ const options = {
                     this.clients = response.data
                     console.log(this.clients)
                     this.clients_accounts = this.clients.accounts
+                    console.log(this.clients_accounts)
                     const numberF = Intl.NumberFormat('es-US', {
                         style: 'currency',
                         currency: 'USD',
@@ -25,6 +26,7 @@ const options = {
                     })
                     for (const accounts of this.clients_accounts) {
                         const aux = {
+                            id: accounts.id,
                             number: accounts.number,
                             dateTime: accounts.dateTime,
                             balance: numberF.format(accounts.balance),

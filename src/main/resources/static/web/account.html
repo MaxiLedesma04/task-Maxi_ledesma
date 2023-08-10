@@ -8,18 +8,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link href="./accountStile/estilo.css">
-    <link rel="stylesheet" href="./accountStile/estilo.css">
+    <link rel="stylesheet" href="../comparacion.css">
 </head>
 
-<body class="">
+<body class="cuerpa">
 
-    <div id="app" class="d-flex col-12">
-
-        <header class="cabeza d-flex flex-column justify-content-center">
-
+    <div id="app" class="">
+        <header class="cabeza-b">
 
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
+                    <a class="navbar-brand" href="#"><img src="./image/banco.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -48,42 +47,71 @@
                             </li>
                         </ul>
                     </div>
-                    <a class="navbar-brand" href="#"><img src="./image/banco.png" alt=""></a>
+
                 </div>
             </nav>
 
         </header>
 
-        <main class="d-flex col-10 gap-3 cuerpa flex-grow-1">
+        <main class="content-m d-flex col-10 gap-3 flex-grow-1">
             <div class="eldiv">
-                <h1 class="fw-bold d-flex justify-content-start">Bienvenida Cliente!</h1>
+                <h1 class="fw-bold">Bienvenida Cliente!</h1>
             </div>
-            <template>
+
                 <div class="contenedor">
-                    <section class="tarjeta">
+                    <section class="tarjeta-cuenta">
                         <div class="delantera">
                             <div class="grupo">
                                 <p class="label">Número de Cuenta</p>
-                                <p class="numero"></p>
+                                <p class="numero">
+                                <span>{{accounts.number}}</span>
+
+                                </p>
                             </div>
 
                             <div class="grupo">
                                 <p class="label">Saldo</p>
-                                <p class="numero"></p>
+                                <p class="numero">
+                                    <span>{{accounts.balance}}</span>
+                                </p>
                             </div>
 
                             <div class="grupo">
                                 <p class="label">Expiracion</p>
-                                <p class="numero"></p>
+                                <p class="numero">
+                                    <span>{{accounts.dateTime}}</span>
+                                </p>
                             </div>
                         </div>
                     </section>
                 </div>
 
-            </template>
+                <table class="table table-striped table-bordered text-center border-success me-3">
+                    <thead>
+                        <tr>
+                            <td>Type</td>
+                            <td>Amount</td>
+                            <td>Description</td>
+                            <td>Date</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template v-if="transactions.length > 0" v-for="transaction of transactions">
+                            <tr>
+                                <td v-if="transaction.type == 'Debit'" class="text-danger">{{transaction.type}}</td>
+                                <td v-else class="text-success">{{transaction.type}}</td>
+                                <td>{{transaction.amount}}</td>
+                                <td>{{transaction.description}}</td>
+                                <td>{{transaction.localdate}}</td>
+                            </tr>
+                        </template>
+                    </tbody>
 
 
-            <div id="carouselExampleIndicators" class=" calecita  carousel slide">
+                </table>
+
+
+            <!-- <div id="carouselExampleIndicators" class=" calecita  carousel slide">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
                         class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -113,13 +141,12 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
-            </div>
+            </div> -->
 
 
 
 
         </main>
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"

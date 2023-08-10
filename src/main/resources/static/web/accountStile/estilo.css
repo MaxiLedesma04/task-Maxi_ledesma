@@ -4,7 +4,8 @@
 }
 .cabeza{
 	background-color: #b6f0d5;
-	height: 630px;
+	
+	min-height: 630px;
 	width: 10%;
 }
 .nav-item{
@@ -77,7 +78,15 @@
 	display: flex;
 }
 .calecita img{
-	
 	height: 20rem;
 	width: 50rem;
+}
+.table{
+	height: 14rem;
+	width: 50rem;
+	position: relative;
+	margin-top: 400px !important;
+	margin-left: 180px;
+	z-index: 5;
+	display: flex;
 }
