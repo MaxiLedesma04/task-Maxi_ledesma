@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link href="./accountStile/estilo.css">
-    <link rel="stylesheet" href="../comparacion.css">
+    <link rel="stylesheet" href="../estilo2.css">
 </head>
 
 <body class="cuerpa">
@@ -29,16 +29,16 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="#">Account</a>
+                                <a class="nav-link" aria-current="page" href="#">Cuentas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Cards</a>
+                                <a class="nav-link" href="#">tajetas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Transactions</a>
+                                <a class="nav-link" href="#">Trasacciones</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Loans</a>
+                                <a class="nav-link" href="#">Prestamos</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <ul class="dropdown-menu">
@@ -54,14 +54,15 @@
 
         </header>
 
-        <main class="content-m d-flex col-10 gap-3 flex-grow-1">
-            <div class="eldiv">
+        <main class="content-m">
+            <div class="div_saludo">
                 <h1 class="fw-bold d-flex justify-content-start">Bienvenida Cliente!</h1>
             </div>
-            <template v-if="accounts.length > 0" v-for="account of accounts">
-                <div class="contenedor">
+            <div class="contenedor_tarjeta">
+                <template v-if="accounts.length > 0" v-for="account of accounts">
+
                     <section class="tarjeta">
-                        <div class="delantera">
+                        <div class="tarjeta_delantera">
                             <div class="grupo">
                                 <p class="label">Número de Cuenta</p>
                                 <p class="numero">{{account.number}}</p>
@@ -77,14 +78,15 @@
                                 <p class="numero">{{account.dateTime}}</p>
                             </div>
                         </div>
-                        <a :href="'./account.html?id='+account.id" class="btn btn-success">Details</a>
+                        <a :href="'./account.html?id='+account.id" class="btn btn-success">Detalles</a>
                     </section>
-                </div>
 
-            </template>
+                </template>
+            </div>
 
 
-            <div id="carouselExampleIndicators" class=" calecita  carousel slide">
+
+            <div id="carouselExampleIndicators" class="calecita carousel slide">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
                         class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -116,11 +118,46 @@
                 </button>
             </div>
 
+            <section class="prestamos">
+                <h3>Prestamos</h3>
+            </section>
 
+
+
+            <div class="contenedor_loan">
+                <template v-if="loans.length > 0" v-for="loan of loans">
+                    <section class="tarjeta">
+                        <div class="tarjeta_delantera">
+                            <div class="grupo">
+                                <p class="label">Monto</p>
+                                <p class="numero">
+                                    <span>{{loan.amount}}</span>
+
+                                </p>
+                            </div>
+
+                            <div class="grupo">
+                                <p class="label">Pagos</p>
+                                <p class="numero">
+                                    <span>{{loan.payments}}</span>
+                                </p>
+                            </div>
+
+                            <div class="grupo">
+                                <p class="label">Tipo</p>
+                                <p class="numero">
+                                    <span>{{loan.name}}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                </template>
+                <template v-else> Don have a loan see our expectaculars offers</template>
+            </div>
 
 
         </main>
-
+        
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
@@ -133,3 +170,6 @@
 </body>
 
 </html>
+
+<!-- d-flex col-10 gap-3 flex-grow-1 -->
+<!-- <a :href="'./loans.html?id='+loans.id" class="btn btn-success">Loans</a> --

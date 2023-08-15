@@ -1,12 +1,7 @@
 package com.mindhub.homebanking;
 
-import com.mindhub.homebanking.models.Account;
-import com.mindhub.homebanking.models.Client;
-import com.mindhub.homebanking.models.Transaction;
-import com.mindhub.homebanking.models.TransactionType;
-import com.mindhub.homebanking.repositories.AccountRepository;
-import com.mindhub.homebanking.repositories.ClientRepository;
-import com.mindhub.homebanking.repositories.TransactionRepository;
+import com.mindhub.homebanking.models.*;
+import com.mindhub.homebanking.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.HashSet;
 
 @SpringBootApplication
 public class HomebankingApplication {
@@ -22,7 +19,7 @@ public class HomebankingApplication {
 		SpringApplication.run(HomebankingApplication.class, args);
 	}
 	@Bean
-	public CommandLineRunner initData(ClientRepository repositoryClient, AccountRepository accountRepository, TransactionRepository transactionRepository) {
+	public CommandLineRunner initData(ClientRepository repositoryClient, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository) {
 
 		return (args) -> {
 			LocalDateTime today = LocalDate.now().atStartOfDay();
@@ -30,9 +27,22 @@ public class HomebankingApplication {
 			LocalDateTime date = LocalDateTime.now();
 
 
+			Loan hipotecario = new Loan(null, "Hipotecario", 500000,
+					new HashSet<>(Arrays.asList(12, 24, 36, 48, 60)));
+			Loan personal = new Loan(null, "Personal", 100000,
+					new HashSet<>(Arrays.asList(6, 12, 24)));
+			Loan automotriz = new Loan(null, "Automotriz", 300000,
+					new HashSet<>(Arrays.asList(6, 12, 24, 36)));
+			loanRepository.save(hipotecario);
+			loanRepository.save(personal);
+			loanRepository.save(automotriz);
+
+
+
 			Account account1 =new Account("VIN001", today, 5000.0);
 			Account account2 = new Account("VIN002", tomorrow, 7500.0);
 			Client melba = new Client("Melba", "Morel","melbax@gmail.com");
+			Client jorge = new Client("Jorge", "Gonzalez","jorgitox@gmail.com");
 			melba.addAccount(account1);
 			melba.addAccount(account2);
 
@@ -54,6 +64,26 @@ public class HomebankingApplication {
 			transactionRepository.save(transaction2);
 			transactionRepository.save(transaction2_1);
 			transactionRepository.save(transaction2_2);
+
+
+			ClientLoan clientLoan1 = new ClientLoan(400000L,
+					60,
+					hipotecario, melba);
+
+			ClientLoan clientLoan2 = new ClientLoan(50000L,
+					12,
+					personal, melba);
+
+			clientLoanRepository.save(clientLoan1);
+			clientLoanRepository.save(clientLoan2);
+
+			ClientLoan clientLoan3 = new ClientLoan(100000L,
+					24,
+					personal, jorge);
+			ClientLoan clientLoan4 = new ClientLoan(200000L,
+					36,
+					automotriz, jorge);
+
 
 		};
 	}

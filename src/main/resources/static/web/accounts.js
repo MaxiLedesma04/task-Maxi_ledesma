@@ -6,6 +6,7 @@ const options = {
             clients: [],
             clients_accounts: [],
             accounts: [],
+            loans:[],
         };
     },
     created() {
@@ -24,6 +25,9 @@ const options = {
                         currency: 'USD',
                         maximumSignificantDigits: 1
                     })
+                    this.loans = this.clients.loans;
+                    console.log(this.loans)
+
                     for (const accounts of this.clients_accounts) {
                         const aux = {
                             id: accounts.id,
