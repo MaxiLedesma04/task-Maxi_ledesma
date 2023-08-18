@@ -4,12 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toSet;
 
 @Entity
 public class Client {
@@ -23,9 +18,11 @@ public class Client {
 
     private String email;
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
-    private Set<Account> accounts = new HashSet<>();
+    private Set<Accounts> accounts = new HashSet<>();
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private Set<ClientLoan> clientLoans = new HashSet<>();
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private Set<Card> cards = new HashSet<>();
 
 
     public Client() { }
@@ -68,27 +65,45 @@ public class Client {
         this.email = email;
     }
 
-    public Set<Account> getAccounts() {
+    public Set<Accounts> getAccounts() {
         return accounts;
     }
 
-    public void setAccounts(Set<Account> accounts) {
+    public void setAccounts(Set<Accounts> accounts) {
         this.accounts = accounts;
     }
 
-    public void addAccount(Account account){
-        account.setClient(this);
-        accounts.add(account);
-    }
 
     public Set<ClientLoan> getClientLoans() {
         return clientLoans;
     }
 
-    public void setClientLoans(Set<ClientLoan> clientLoans) {
-        this.clientLoans = clientLoans;
+    public Set<Card> getCards() {
+        return cards;
     }
 
+    public void setCards(Set<Card> cards) {
+        this.cards = cards;
+    }
+
+    public void setClientLoans(Set<ClientLoan> clientLoans) {
+        this.clientLoans = clientLoans;
+    }// cliente instanciado en este moimento pero su propiedad clientLoans
+    public void addCard(Card card){
+        card.setClient(this);//stClient es una propiedad de card y es un metodo setter
+        cards.add(card);//El metodo add es del Set
+    }
+    //Client cliente1 = new Client
+    //Client cliente2 = new Client
+    //cliente1.addCard(card1) es el cliente que esta instanciado en ese momento.ese es el this
+    //cliente1.addCard(card2)
+    //cliente2.addCard(card3)
+    //cliente2.addCard(card4)
+
+    public void addAccount(Accounts account){
+        account.setClient(this);
+        accounts.add(account);
+    }
     public void addClientLoan(ClientLoan clientLoan){
         clientLoan.setClient(this);
         clientLoans.add(clientLoan);

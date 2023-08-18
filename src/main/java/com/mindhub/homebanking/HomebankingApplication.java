@@ -19,12 +19,14 @@ public class HomebankingApplication {
 		SpringApplication.run(HomebankingApplication.class, args);
 	}
 	@Bean
-	public CommandLineRunner initData(ClientRepository repositoryClient, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository) {
+	public CommandLineRunner initData(ClientRepository repositoryClient, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository, CardRepository cardRepository) {
 
 		return (args) -> {
 			LocalDateTime today = LocalDate.now().atStartOfDay();
 			LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
 			LocalDateTime date = LocalDateTime.now();
+			LocalDate thrudate = LocalDate.now();
+			LocalDate fromDate = LocalDate.now().plusYears(5);
 
 
 			Loan hipotecario = new Loan(null, "Hipotecario", 500000,
@@ -39,10 +41,12 @@ public class HomebankingApplication {
 
 
 
-			Account account1 =new Account("VIN001", today, 5000.0);
-			Account account2 = new Account("VIN002", tomorrow, 7500.0);
+			Accounts account1 =new Accounts("VIN001", today, 5000.0);
+			Accounts account2 = new Accounts("VIN002", tomorrow, 7500.0);
 			Client melba = new Client("Melba", "Morel","melbax@gmail.com");
+			repositoryClient.save(melba);
 			Client jorge = new Client("Jorge", "Gonzalez","jorgitox@gmail.com");
+			repositoryClient.save(jorge);
 			melba.addAccount(account1);
 			melba.addAccount(account2);
 
@@ -56,8 +60,21 @@ public class HomebankingApplication {
 			account2.addTransaction(transaction2_1);
 			account2.addTransaction(transaction2_2);
 
+			Card card1 = new Card("Melba", CardType.DEBIT, CardColor.GOLD, "2405 4457 45678 9875", 321, thrudate, fromDate);
+			Card card2 = new Card("Melba", CardType.CREDIT, CardColor.TITANIUM, "2405 4835 4578 8897", 332, thrudate, fromDate);
+			Card card3 = new Card("Jorge", CardType.CREDIT, CardColor.SILVER, "2405 4653 5489 7896", 223, thrudate, fromDate);
+			melba.addCard(card1);
+			melba.addCard(card2);
+			jorge.addCard(card3);
 
-			repositoryClient.save(melba);
+			cardRepository.save(card1);
+			cardRepository.save(card2);
+			cardRepository.save(card3);
+
+
+
+
+
 			accountRepository.save(account1);
 			accountRepository.save(account2);
 			transactionRepository.save(transaction1);
@@ -83,6 +100,7 @@ public class HomebankingApplication {
 			ClientLoan clientLoan4 = new ClientLoan(200000L,
 					36,
 					automotriz, jorge);
+
 
 
 		};

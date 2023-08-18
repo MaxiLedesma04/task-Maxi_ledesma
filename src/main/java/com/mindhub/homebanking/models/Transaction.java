@@ -1,6 +1,5 @@
 package com.mindhub.homebanking.models;
 
-import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -22,7 +21,7 @@ public class Transaction {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="account_id")
-    private Account account;
+    private Accounts account;
 
     public Transaction() { }
 
@@ -65,11 +64,11 @@ public class Transaction {
         this.type = type;
     }
 
-    public Account getAccount() {
+    public Accounts getAccount() {
         return account;
     }
 
-    public void setAccount(Account account) {
+    public void setAccount(Accounts account) {
         this.account = account;
     }
 

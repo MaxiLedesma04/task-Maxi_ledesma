@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Account {
+public class Accounts {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
@@ -20,16 +20,16 @@ public class Account {
     private double balance;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="clien_id")
+    @JoinColumn(name="client_id")
     private Client client;
 
     @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
     private Set<Transaction> transactions = new HashSet<>();
 
 
-    public Account(){}
+    public Accounts(){}
 
-    public Account(String number, LocalDateTime dateTime, double balance) {
+    public Accounts(String number, LocalDateTime dateTime, double balance) {
         this.number = number;
         this.dateTime = dateTime;
         this.balance = balance;
