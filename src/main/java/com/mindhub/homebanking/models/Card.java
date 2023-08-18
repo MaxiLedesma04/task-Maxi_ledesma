@@ -17,7 +17,7 @@ public class Card {
     private CardColor color;
     private String number;
     private Integer cvv;
-    private LocalDate thrudate;
+    private LocalDate thruDate;
     private  LocalDate fromDate;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
@@ -33,7 +33,7 @@ public class Card {
         this.color = color;
         this.number = number;
         this.cvv = cvv;
-        this.thrudate = thrudate;
+        this.thruDate = thrudate;
         this.fromDate = fromDate;
     }
 
@@ -86,11 +86,11 @@ public class Card {
     }
 
     public LocalDate getThrudate() {
-        return thrudate;
+        return thruDate;
     }
 
     public void setThrudate(LocalDate thrudate) {
-        this.thrudate = thrudate;
+        this.thruDate = thrudate;
     }
 
     public LocalDate getFromDate() {

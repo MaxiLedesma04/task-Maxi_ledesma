@@ -25,7 +25,7 @@ public class HomebankingApplication {
 			LocalDateTime today = LocalDate.now().atStartOfDay();
 			LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
 			LocalDateTime date = LocalDateTime.now();
-			LocalDate thrudate = LocalDate.now();
+			LocalDate thruDate = LocalDate.now();
 			LocalDate fromDate = LocalDate.now().plusYears(5);
 
 
@@ -60,9 +60,9 @@ public class HomebankingApplication {
 			account2.addTransaction(transaction2_1);
 			account2.addTransaction(transaction2_2);
 
-			Card card1 = new Card("Melba", CardType.DEBIT, CardColor.GOLD, "2405 4457 45678 9875", 321, thrudate, fromDate);
-			Card card2 = new Card("Melba", CardType.CREDIT, CardColor.TITANIUM, "2405 4835 4578 8897", 332, thrudate, fromDate);
-			Card card3 = new Card("Jorge", CardType.CREDIT, CardColor.SILVER, "2405 4653 5489 7896", 223, thrudate, fromDate);
+			Card card1 = new Card("Melba", CardType.DEBIT, CardColor.GOLD, "2405 4457 45678 9875", 321, thruDate, fromDate);
+			Card card2 = new Card("Melba", CardType.CREDIT, CardColor.TITANIUM, "2405 4835 4578 8897", 332, thruDate, fromDate);
+			Card card3 = new Card("Jorge", CardType.CREDIT, CardColor.SILVER, "2405 4653 5489 7896", 223, thruDate, fromDate);
 			melba.addCard(card1);
 			melba.addCard(card2);
 			jorge.addCard(card3);

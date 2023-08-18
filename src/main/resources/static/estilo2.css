@@ -2,6 +2,13 @@
     background-image: linear-gradient(#cbe54e, #5ba8a0);
     min-height: 80vh;
 }
+.cuerpa h2{
+    margin-top: 3rem;
+    font-size: 60px;
+    color: #008000;
+    background-color: rgb(254, 255, 255);
+    border-radius: 10%;
+}
 
 .cabeza-b {
     width: 100%;
@@ -16,7 +23,18 @@
 
 .navbar-brand{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+}
+
+.nav-link{
+    margin-top: 10rem;
+    width: 12rem;
+    font-size: 2rem;
+    background-color: #fff;
+    color: black;
+    font-weight: 600;
+    display: flex;
+    align-items: flex-start;
 }
 .div_saludo {
     width: 100% !important;
@@ -107,7 +125,8 @@
     color: rgb(0, 0, 0);
     filter: blur(0.2px);
     filter: contrast(-200%);
-    margin-top: 5rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
 }
 
 .heading_8264 {
@@ -262,4 +281,7 @@
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
     background-image: linear-gradient(silver, #5ba8a0);
     filter: brightness(1.5);
+}
+.pie{
+    background-color: #5ba8a0;
 }
