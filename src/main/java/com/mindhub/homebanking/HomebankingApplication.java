@@ -43,9 +43,9 @@ public class HomebankingApplication {
 
 			Accounts account1 =new Accounts("VIN001", today, 5000.0);
 			Accounts account2 = new Accounts("VIN002", tomorrow, 7500.0);
-			Client melba = new Client("Melba", "Morel","melbax@gmail.com");
+			Client melba = new Client("Melba", "Morel","melbax@gmail.com", "Melba0501");
 			repositoryClient.save(melba);
-			Client jorge = new Client("Jorge", "Gonzalez","jorgitox@gmail.com");
+			Client jorge = new Client("Jorge", "Gonzalez","jorgitox@gmail.com", "Jorjito10p");
 			repositoryClient.save(jorge);
 			melba.addAccount(account1);
 			melba.addAccount(account2);
