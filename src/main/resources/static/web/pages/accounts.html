@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Cuentas</title>
-    <link rel="shortcut icon" href="./image/banco.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../image/banco.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <link rel="stylesheet" href="../estilo2.css">
+    <link rel="stylesheet" href="../../estilo2.css">
 </head>
 
 <body>
@@ -31,10 +31,10 @@
                                 <a class="nav-link" aria-current="page" href="#">Cuentas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="./cards.html">tajetas</a>
+                                <a class="nav-link" href="cards.html">Tarjetas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Trasacciones</a>
+                                <a class="nav-link" href="#">Transacciones</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Prestamos</a>
@@ -51,10 +51,13 @@
                 </div>
             </nav>
 
+            <video class="video_Header" loop muted autoplay> 
+                <source src="../image/header.mp4" type="video/mp4">
+            </video>
         </header>
 
         <main class="cuerpa">
-            <div class="div_saludo">
+            <div class="div_saludo mt-5 ms-5">
                 <h1 class="fw-bold d-flex justify-content-start">Bienvenida Cliente!</h1>
             </div>
             <div class="contenedor_tarjeta">
@@ -96,13 +99,13 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="./image/Familia-Banco-1.png" class="d-block w-100" alt="...">
+                        <img src="../image/Familia-Banco-1.png" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="./image/dia-del-cine-2.jpg" class="d-block w-100" alt="...">
+                        <img src="../image/dia-del-cine-2.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="./image/iStock-1056867534-1024x683.jpg" class="d-block w-100" alt="...">
+                        <img src="../image/iStock-1056867534-1024x683.jpg" class="d-block w-100" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -159,7 +162,7 @@
         
     </div>
 
-    <footer class=" d-flex justify-content-center mt-5">
+    <footer class="d-flex justify-content-center mt-5 pie">
 
         <div class="">
             <div class="MbPageFooterstyled__CustomLinkWrapper-sc-1fsql5y-2 bbklCY"><a
@@ -190,11 +193,8 @@
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="./accounts.js"></script>
+    <script src="../js/accounts.js"></script>
 
 </body>
 
 </html>
-
-<!-- d-flex col-10 gap-3 flex-grow-1 -->
-<!-- <a :href="'./loans.html?id='+loans.id" class="btn btn-success">Loans</a> --

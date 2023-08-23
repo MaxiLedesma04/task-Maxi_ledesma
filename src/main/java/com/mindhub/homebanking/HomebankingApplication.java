@@ -2,10 +2,12 @@ package com.mindhub.homebanking;
 
 import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -14,6 +16,9 @@ import java.util.HashSet;
 
 @SpringBootApplication
 public class HomebankingApplication {
+	@Autowired
+	 private PasswordEncoder passwordEncoder;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(HomebankingApplication.class, args);
@@ -43,10 +48,12 @@ public class HomebankingApplication {
 
 			Accounts account1 =new Accounts("VIN001", today, 5000.0);
 			Accounts account2 = new Accounts("VIN002", tomorrow, 7500.0);
-			Client melba = new Client("Melba", "Morel","melbax@gmail.com", "Melba0501");
+			Client melba = new Client("Melba", "Morel","melbax@gmail.com", passwordEncoder.encode("Melba0501"));
 			repositoryClient.save(melba);
-			Client jorge = new Client("Jorge", "Gonzalez","jorgitox@gmail.com", "Jorjito10p");
+			Client jorge = new Client("Jorge", "Gonzalez","jorgitox@gmail.com", passwordEncoder.encode("Jorjito10p"));
 			repositoryClient.save(jorge);
+			Client admin = new Client("admin", "apellido", "admin@admin.com", passwordEncoder.encode("0012"));
+			repositoryClient.save(admin);
 			melba.addAccount(account1);
 			melba.addAccount(account2);
 

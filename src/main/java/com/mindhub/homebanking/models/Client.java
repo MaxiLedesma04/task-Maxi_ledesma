@@ -97,7 +97,7 @@ public class Client {
 
     public void setClientLoans(Set<ClientLoan> clientLoans) {
         this.clientLoans = clientLoans;
-    }// cliente instanciado en este moimento pero su propiedad clientLoans
+    }// cliente instanciado en este momento pero su propiedad clientLoans
     public void addCard(Card card){
         card.setClient(this);//stClient es una propiedad de card y es un metodo setter
         cards.add(card);//El metodo add es del Set
