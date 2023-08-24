@@ -41,6 +41,14 @@
                 <button class="sinUp-formul-form-button" type="submit">Iniciar Sesión</button>
             </form>
         </div>
+
+        <div v-if="showAlert" class="alert-container">
+            <div class="alert-box">
+                <div class="alert-close" @click="showAlert = false">X</div>
+                <p>Contraseña incorrecta. Inténtalo de nuevo.</p>
+            </div>
+        </div>
+
     </div>
 
 

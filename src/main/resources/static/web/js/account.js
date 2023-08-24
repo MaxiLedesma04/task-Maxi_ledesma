@@ -25,6 +25,14 @@ const options = {
                     })
                 .catch(error => console.error(error))
         },
+        
+        logout() {
+            axios.post('http://localhost:8080/api/logout')
+                .then(response => {
+                    location.href = '/web/pages/index.html';
+                })
+                .catch(error => console.error(error))
+        },
     }
 
 }
