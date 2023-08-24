@@ -22,10 +22,8 @@ public class WebAuthorization {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/clients", "/api/login", "/api/logout").permitAll()
-                .antMatchers("/web/pages/index.html").permitAll()
-                .antMatchers("/manager/manager.html","/api/clients/**").hasAnyAuthority("ADMIN")
-                .antMatchers("/rest/**").hasAnyAuthority("ADMIN")
-                .antMatchers("/h2-console/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/web/pages/index.html","/web/js/**","/web/accountStile/estilo2.css","/web/image/**").permitAll()
+                .antMatchers("/manager/manager.html","/manager/manager.js","/api/clients/**","/rest/**","/h2-console").hasAnyAuthority("ADMIN")
                 .antMatchers("/web/**").hasAnyAuthority("USER")
                 .anyRequest().authenticated();
         http.formLogin()
