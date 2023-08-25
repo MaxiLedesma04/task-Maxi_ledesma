@@ -1,5 +1,5 @@
 const { createApp } = Vue
-const url = "/api/client/current"
+const url = "/api/clients/current"
 const options = {
     data() {
         return {
@@ -19,14 +19,14 @@ const options = {
                     this.clients = response.data
                     console.log(this.clients)
                     this.clients_accounts = this.clients.accounts
-                    console.log(this.clients_accounts)
+                    // console.log(this.clients_accounts)
                     const numberF = Intl.NumberFormat('es-US', {
                         style: 'currency',
                         currency: 'USD',
                         maximumSignificantDigits: 1
                     })
                     this.loans = this.clients.loans;
-                    console.log(this.loans)
+                    // console.log(this.loans)
 
                     for (const accounts of this.clients_accounts) {
                         const aux = {
@@ -49,6 +49,26 @@ const options = {
                 })
                 .catch(error => console.error(error))
         },
+
+        createAcc(){
+            Swal.fire({title: '¿Quieres crear una nueva cuenta?',
+                inputAttributes: {autocapitalize: 'off'},
+                showCancelButton: true, 
+                confirmButtonText: "Seguro",
+                showLoaderOnConfirm: true,
+                 preConfirm: login =>{
+                 axios.post('/api/clients/current/accounts')
+                    .then(reponse => {location.href = '../pages/accounts.html'})
+                    .catch(error=> {
+                        swal.fire({icon: 'error',
+                    text: error.response.data,
+                confirmButtonColor: '#5b31be93',});
+                    });
+                },
+                allowOutsideClick: () => !Swal.isLoading(),
+
+            });
+        }
     }
 
 }

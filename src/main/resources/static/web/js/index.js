@@ -19,10 +19,10 @@ const options = {
                 }
             })
                 .then(response => {
-                    if ("admin@admin.com".includes(this.email)) {
-                        location.href = '/manager/manager.html';
+                    if (this.email == "admin@admin.com") {
+                        location.href = '../../manager/manager.html';
                     } else {
-                        location.href = '/web/pages/accounts.html';
+                        location.href = '../pages/accounts.html';
                     }
                 })
                 .catch(error => {
@@ -42,6 +42,7 @@ const options = {
         },
 
         signUp(event) {
+            console.log("HOLA JULI")
             event.preventDefault()
             axios.post('/api/clients', `firstName=${this.firstName}&lastName=${this.lastName}&email=${this.email}&password=${this.password}`, 
             {headers: {'content-type': 'application/x-www-form-urlencoded'}})

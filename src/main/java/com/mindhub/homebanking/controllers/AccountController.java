@@ -25,7 +25,7 @@ public class AccountController {
         do{
             int number = (int)(Math.random()*001+999);
             random="VIN-" + number;
-        }while (accountRepository.findByNumber(random) == null);
+        }while (accountRepository.findByNumber(random) != null);
         return random;
     }
     @Autowired

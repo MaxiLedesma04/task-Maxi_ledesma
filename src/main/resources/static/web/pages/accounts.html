@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Cuentas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css">
     <link rel="shortcut icon" href="../image/banco.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
@@ -49,7 +50,7 @@
                         </ul>
                     </div>
                 </div>
-                <button class="Btn">
+                <button @click="logout" class="Btn">
   
                     <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
                     
@@ -66,7 +67,10 @@
             <div class="div_saludo mt-5 ms-5">
                 <h1 class="fw-bold d-flex justify-content-start">Bienvenida Cliente!</h1>
             </div>
+
+            <button type="submit" @click.prevent="createAcc">Crear cuenta</button>
             <div class="contenedor_tarjeta">
+
                 <template v-if="accounts.length > 0" v-for="account of accounts">
 
                     <section class="tarjeta">
@@ -126,6 +130,7 @@
                 </button>
             </div>
 
+
             <section class="prestamos">
                 <h3>Prestamos</h3>
             </section>
@@ -160,8 +165,11 @@
                         </div>
                     </section>
                 </template>
-                <template v-else> Don have a loan see our expectaculars offers</template>
+                <template v-else> <h2 class="d-flex justify-content-center text-bold-bolder">
+                    ¿No tienes una cuenta? puedes crearte una
+                </h2></template>
             </div>
+            
 
 
         </main>
@@ -194,6 +202,8 @@
         
     </footer>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>

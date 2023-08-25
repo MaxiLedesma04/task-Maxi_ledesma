@@ -57,6 +57,7 @@ public class ClientController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+
     @RequestMapping("/api/clients")
     public List<ClientDTO> getClients(){
         return clientRepository.findAll().stream().map(ClientDTO::new).collect(toList());
@@ -67,11 +68,12 @@ public class ClientController {
         return clientRepository.findById(id).map(ClientDTO::new).orElse(null);
     } //Servlets
 
-    @RequestMapping("/api/client/current")
 
+    @RequestMapping("/api/clients/current")
     public ClientDTO getClient(Authentication authentication) {
 
         return new ClientDTO(clientRepository.findByEmail(authentication.getName()));
+
     }
 
 }
