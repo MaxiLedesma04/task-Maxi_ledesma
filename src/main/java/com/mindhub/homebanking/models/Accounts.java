@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,7 +17,7 @@ public class Accounts {
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
     private String number;
-    private LocalDateTime dateTime;
+    private LocalDate dateTime;
     private double balance;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -29,7 +30,7 @@ public class Accounts {
 
     public Accounts(){}
 
-    public Accounts(String number, LocalDateTime dateTime, double balance) {
+    public Accounts(String number, LocalDate dateTime, double balance) {
         this.number = number;
         this.dateTime = dateTime;
         this.balance = balance;
@@ -51,11 +52,11 @@ public class Accounts {
         this.number = number;
     }
 
-    public LocalDateTime getDateTime() {
+    public LocalDate getDate() {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(LocalDate dateTime) {
         this.dateTime = dateTime;
     }
 

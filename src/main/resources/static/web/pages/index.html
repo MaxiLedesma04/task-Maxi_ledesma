@@ -9,7 +9,8 @@
 
 <body class="body-sinUp">
 
-    <div id="app" class="sinUp-formul">
+    <div id="app" class="sinUp-formul" v-cloak>
+        
         <div>
             <h2>Registro</h2>
             <form class="sinUp-formul-form">
@@ -45,7 +46,7 @@
         <div v-if="showAlert" class="alert-container">
             <div class="alert-box">
                 <div class="alert-close" @click="showAlert = false">X</div>
-                <p>Contraseña incorrecta. Inténtalo de nuevo.</p>
+                <p>Hubo un error. Inténtalo de nuevo.</p>
             </div>
         </div>
 
@@ -58,3 +59,8 @@
 <script src="../js/index.js"></script>
 </body>
 </html>
+
+
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css%22%3E
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js%22%3E</script> -->

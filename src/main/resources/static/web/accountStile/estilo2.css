@@ -340,7 +340,7 @@
 .sinUp-formul-form-button {
     width: 100%;
     padding: 10px;
-    background-color: #007BFF; /* Cambia el color de fondo del botón */
+    background-color: #007BFF; 
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -349,7 +349,7 @@
 }
 
 .sinUp-formul-form-button:hover {
-    background-color: #0056b3; /* Cambia el color de fondo del botón al pasar el ratón */
+    background-color: #0056b3; 
 }
 
 .Btn {
@@ -368,7 +368,7 @@
     background-color: rgb(5, 65, 65);
   }
   
-  /* plus sign */
+
   .sign {
     width: 100%;
     transition-duration: .3s;
@@ -384,7 +384,7 @@
   .sign svg path {
     fill: white;
   }
-  /* text */
+
   .text {
     position: absolute;
     right: 0%;
@@ -414,7 +414,7 @@
     transition-duration: .3s;
     padding-right: 10px;
   }
-  /* button click effect*/
+
   .Btn:active {
     transform: translate(2px ,2px);
   }
@@ -451,4 +451,8 @@
 
 .alert-close:hover {
     color: darkred;
+}
+
+[v-cloak] {
+    display: none !important;
 }

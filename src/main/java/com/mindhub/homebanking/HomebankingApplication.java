@@ -27,6 +27,8 @@ public class HomebankingApplication {
 	public CommandLineRunner initData(ClientRepository repositoryClient, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository, CardRepository cardRepository) {
 
 		return (args) -> {
+			LocalDate todayAcc = LocalDate.from(LocalDate.now().atStartOfDay());
+			LocalDate tomorrowyAcc = LocalDate.from(LocalDate.now().plusDays(1));
 			LocalDateTime today = LocalDate.now().atStartOfDay();
 			LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
 			LocalDateTime date = LocalDateTime.now();
@@ -46,8 +48,8 @@ public class HomebankingApplication {
 
 
 
-			Accounts account1 =new Accounts("VIN001", today, 5000.0);
-			Accounts account2 = new Accounts("VIN002", tomorrow, 7500.0);
+			Accounts account1 =new Accounts("VIN001", todayAcc, 5000.0);
+			Accounts account2 = new Accounts("VIN002", tomorrowyAcc, 7500.0);
 			Client melba = new Client("Melba", "Morel","melbax@gmail.com", passwordEncoder.encode("Melba0501"));
 			repositoryClient.save(melba);
 			Client jorge = new Client("Jorge", "Gonzalez","jorgitox@gmail.com", passwordEncoder.encode("Jorjito10p"));
