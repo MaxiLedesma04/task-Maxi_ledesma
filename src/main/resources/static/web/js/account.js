@@ -15,7 +15,7 @@ const options = {
         loadData() {
             const parametro = location.search
             const nuevoparametro = new URLSearchParams(parametro)
-            // this.parametroId = nuevoparametro.get("id")
+            this.parametroId = nuevoparametro.get("id")
             console.log(this.parametroId)
             axios.get(url)
                 .then(response => {
