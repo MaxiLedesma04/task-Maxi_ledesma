@@ -18,7 +18,7 @@
         <header class="cabeza-b">
 
 
-            <nav class="navbar navbar-expand-lg">
+            <nav class="navbar navbar-expand-lg z-3">
                 <div class="container-fluid">
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -51,11 +51,15 @@
                     </div>
                 </div>
                 <button @click="logout" class="Btn">
-  
-                    <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
-                    
+
+                    <div class="sign"><svg viewBox="0 0 512 512">
+                            <path
+                                d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                            </path>
+                        </svg></div>
+
                     <div class="text">Logout</div>
-                  </button> 
+                </button>
             </nav>
 
 
@@ -94,11 +98,11 @@
                 <div class="video_Header_btn_text">
                     <button class="Btn-header" type="submit" @click.prevent="createAcc">Crear cuenta</button>
                     <button class="Btn-header" type="submit"><a href="./create-cards.html">Crear Tarjetas</a></button>
-                    <button class="Btn-header" type="submit"><a href="#">Obtener Prestamo</a></button>
+                    <button class="Btn-header" type="submit"><a href="./transactions.html">Transacciones</a></button>
                 </div>
-                
+
             </div>
-            
+
             <div></div>
         </header>
 
@@ -137,7 +141,107 @@
 
 
 
- 
+            <section class="d-flex justify-content-center align-items-center gap-1 cuerpa">
+                <div data-testid="featured-boxes-grid-wrapper" class="sc-inRwDn jMBmnc"><a
+                        href="/personas/propuesta/excellence" aria-label="/personas/propuesta/excellence"
+                        data-gaid="Link Conocé más" color="primary" class="sc-jmnVvD jjQEdq">
+                        <div data-testid="featured-boxes-Feature-background"
+                            class="sc-ddkEoM dqcWCP tag-3etKw2XuASWVLOnsGAeWhm">
+                            <div class="sc-fgiXzq hWPYLM">
+                                <div class="sc-gcFSfr hEgMBy">
+                                    <div>
+                                        <h4 class="sc-hKMtZM sc-dTbhCw dGdcgA jZhtqN">Excellence</h4>
+                                        <p class="sc-papXJ sc-ePycix kCptio hcZFkV">Una propuesta a la medida de tus
+                                            necesidades.</p>
+                                    </div><span data-testid="cta" data-gaid="Botón Conocé más"
+                                        class="sc-iqcoie sc-fnykZs yWRkV kFPWzo" color="#FFFFFF">Conocé más<svg
+                                            viewBox="0 0 24 24" width="32" height="32"
+                                            data-testid="icon:ChevronRight-size:32-gradient:false-background:false"
+                                            class="sc-gKXOVf gZaZJt icon-ChevronRight "
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M13.6 17.0477C13.6 16.8029 13.6909 16.5583 13.8724 16.3721L17.4818 12.6721C17.6572 12.4924 17.7539 12.2535 17.7539 12C17.7539 11.7465 17.6572 11.5076 17.4818 11.3279L13.8724 7.62795C13.5108 7.25722 13.509 6.65417 13.8683 6.28102C14.2276 5.90807 14.8121 5.90602 15.1738 6.27675L18.7829 9.97673C19.3099 10.5167 19.6 11.2353 19.6 12C19.6 12.7647 19.3099 13.4833 18.7829 14.0233L15.1738 17.7233C14.8121 18.094 14.2276 18.0919 13.8683 17.719C13.6895 17.5331 13.6 17.2904 13.6 17.0477ZM4.9 11.0399H15.1C15.5971 11.0399 16 11.4428 16 11.9399C16 12.437 15.5971 12.8399 15.1 12.8399H4.9C4.40294 12.8399 4 12.437 4 11.9399C4 11.4428 4.40294 11.0399 4.9 11.0399Z"
+                                                fill="#FFFFFF"></path>
+                                        </svg></span>
+                                </div>
+                            </div>
+                        </div>
+                    </a><a href="/personas/educacion-financiera/seguridad"
+                        aria-label="/personas/educacion-financiera/seguridad" data-gaid="Link Conocé más"
+                        color="primary" class="sc-jmnVvD jjQEdq">
+                        <div data-testid="featured-boxes-Feature-background"
+                            class="sc-ddkEoM kpkVtK tag-7gJkWZQv2c3IT2pssn6jhn">
+                            <div class="sc-fgiXzq hWPYLM">
+                                <div class="sc-gcFSfr hEgMBy">
+                                    <div>
+                                        <h4 class="sc-hKMtZM sc-dTbhCw dGdcgA jZhtqN">Cuidate de las estafas</h4>
+                                        <p class="sc-papXJ sc-ePycix kCptio hcZFkV">Te damos todos los tips de
+                                            seguridad.</p>
+                                    </div><span data-testid="cta" data-gaid="Botón Conocé más"
+                                        class="sc-iqcoie sc-fnykZs yWRkV kFPWzo" color="#FFFFFF">Conocé más<svg
+                                            viewBox="0 0 24 24" width="32" height="32"
+                                            data-testid="icon:ChevronRight-size:32-gradient:false-background:false"
+                                            class="sc-gKXOVf gZaZJt icon-ChevronRight "
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M13.6 17.0477C13.6 16.8029 13.6909 16.5583 13.8724 16.3721L17.4818 12.6721C17.6572 12.4924 17.7539 12.2535 17.7539 12C17.7539 11.7465 17.6572 11.5076 17.4818 11.3279L13.8724 7.62795C13.5108 7.25722 13.509 6.65417 13.8683 6.28102C14.2276 5.90807 14.8121 5.90602 15.1738 6.27675L18.7829 9.97673C19.3099 10.5167 19.6 11.2353 19.6 12C19.6 12.7647 19.3099 13.4833 18.7829 14.0233L15.1738 17.7233C14.8121 18.094 14.2276 18.0919 13.8683 17.719C13.6895 17.5331 13.6 17.2904 13.6 17.0477ZM4.9 11.0399H15.1C15.5971 11.0399 16 11.4428 16 11.9399C16 12.437 15.5971 12.8399 15.1 12.8399H4.9C4.40294 12.8399 4 12.437 4 11.9399C4 11.4428 4.40294 11.0399 4.9 11.0399Z"
+                                                fill="#FFFFFF"></path>
+                                        </svg></span>
+                                </div>
+                            </div>
+                        </div>
+                    </a><a href="/personas/llegomodo" aria-label="/personas/llegomodo" data-gaid="Link Conocé más"
+                        color="primary" class="sc-jmnVvD jjQEdq">
+                        <div data-testid="featured-boxes-Feature-background"
+                            class="sc-ddkEoM dfOLNK tag-4uBmsDon8Ikl48ZnGTRDNe">
+                            <div class="sc-fgiXzq hWPYLM">
+                                <div class="sc-gcFSfr hEgMBy">
+                                    <div>
+                                        <h4 class="sc-hKMtZM sc-dTbhCw dGdcgA jZhtqN">Pagá con QR de MODO</h4>
+                                        <p class="sc-papXJ sc-ePycix kCptio hcZFkV">Y aprovechá todas nuestras
+                                            promociones.</p>
+                                    </div><span data-testid="cta" data-gaid="Botón Conocé más"
+                                        class="sc-iqcoie sc-fnykZs yWRkV kFPWzo" color="#FFFFFF">Conocé más<svg
+                                            viewBox="0 0 24 24" width="32" height="32"
+                                            data-testid="icon:ChevronRight-size:32-gradient:false-background:false"
+                                            class="sc-gKXOVf gZaZJt icon-ChevronRight "
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M13.6 17.0477C13.6 16.8029 13.6909 16.5583 13.8724 16.3721L17.4818 12.6721C17.6572 12.4924 17.7539 12.2535 17.7539 12C17.7539 11.7465 17.6572 11.5076 17.4818 11.3279L13.8724 7.62795C13.5108 7.25722 13.509 6.65417 13.8683 6.28102C14.2276 5.90807 14.8121 5.90602 15.1738 6.27675L18.7829 9.97673C19.3099 10.5167 19.6 11.2353 19.6 12C19.6 12.7647 19.3099 13.4833 18.7829 14.0233L15.1738 17.7233C14.8121 18.094 14.2276 18.0919 13.8683 17.719C13.6895 17.5331 13.6 17.2904 13.6 17.0477ZM4.9 11.0399H15.1C15.5971 11.0399 16 11.4428 16 11.9399C16 12.437 15.5971 12.8399 15.1 12.8399H4.9C4.40294 12.8399 4 12.437 4 11.9399C4 11.4428 4.40294 11.0399 4.9 11.0399Z"
+                                                fill="#FFFFFF"></path>
+                                        </svg></span>
+                                </div>
+                            </div>
+                        </div>
+                    </a><a href="/personas/ayuda/canales-de-atencion" aria-label="/personas/ayuda/canales-de-atencion"
+                        data-gaid="Link Conocé más" color="primary" class="sc-jmnVvD jjQEdq">
+                        <div data-testid="featured-boxes-Feature-background"
+                            class="sc-ddkEoM dOIFve tag-6TAXRu1L5W3AXrYPPFXJhU">
+                            <div class="sc-fgiXzq hWPYLM">
+                                <div class="sc-gcFSfr hEgMBy">
+                                    <div>
+                                        <h4 class="sc-hKMtZM sc-dTbhCw dGdcgA jZhtqN">Chateá con La Mano</h4>
+                                        <p class="sc-papXJ sc-ePycix kCptio hcZFkV">Y resolvé todas tus dudas desde
+                                            donde estés.</p>
+                                    </div><span data-testid="cta" data-gaid="Botón Conocé más"
+                                        class="sc-iqcoie sc-fnykZs yWRkV kFPWzo" color="#FFFFFF">Conocé más<svg
+                                            viewBox="0 0 24 24" width="32" height="32"
+                                            data-testid="icon:ChevronRight-size:32-gradient:false-background:false"
+                                            class="sc-gKXOVf gZaZJt icon-ChevronRight "
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M13.6 17.0477C13.6 16.8029 13.6909 16.5583 13.8724 16.3721L17.4818 12.6721C17.6572 12.4924 17.7539 12.2535 17.7539 12C17.7539 11.7465 17.6572 11.5076 17.4818 11.3279L13.8724 7.62795C13.5108 7.25722 13.509 6.65417 13.8683 6.28102C14.2276 5.90807 14.8121 5.90602 15.1738 6.27675L18.7829 9.97673C19.3099 10.5167 19.6 11.2353 19.6 12C19.6 12.7647 19.3099 13.4833 18.7829 14.0233L15.1738 17.7233C14.8121 18.094 14.2276 18.0919 13.8683 17.719C13.6895 17.5331 13.6 17.2904 13.6 17.0477ZM4.9 11.0399H15.1C15.5971 11.0399 16 11.4428 16 11.9399C16 12.437 15.5971 12.8399 15.1 12.8399H4.9C4.40294 12.8399 4 12.437 4 11.9399C4 11.4428 4.40294 11.0399 4.9 11.0399Z"
+                                                fill="#FFFFFF"></path>
+                                        </svg></span>
+                                </div>
+                            </div>
+                        </div>
+                    </a></div>
+
+
+            </section>
+
+
 
 
             <section class="prestamos">
@@ -146,7 +250,7 @@
 
 
 
-            <div class="contenedor_loan">
+            <div class="contenedor_loan d-flex justify-content-center w-100">
                 <template v-if="loans.length > 0" v-for="loan of loans">
                     <section class="tarjeta">
                         <div class="tarjeta_delantera">
@@ -174,15 +278,17 @@
                         </div>
                     </section>
                 </template>
-                <template v-else> <h2 class="d-flex justify-content-center text-bold-bolder">
-                    ¿No tienes una cuenta? puedes crearte una
-                </h2></template>
+                <template v-else>
+                    <h2 class="d-flex justify-content-center text-bold-bolder">
+                        ¿No tienes una cuenta? puedes crearte una
+                    </h2>
+                </template>
             </div>
-            
+
 
 
         </main>
-        
+
     </div>
 
     <footer class="d-flex justify-content-center mt-5 pie">
@@ -192,8 +298,8 @@
                     class="MbLinkstyled__MbLinkStyled-sc-1mb2bh4-0 jhyVQd">Política de Privacidad</a>
             </div>
             <div class="MbPageFooterstyled__CustomLinkWrapper-sc-1fsql5y-2 bbklCY"><a data-testid="gatsbyLink"
-                    class="CustomGatsbyLinkstyled__StyledLink-sc-yfkh4o-0 eFouJl"
-                    href="/informacion-legal">Contratos de adhesión – Ley 24.240 de Defensa del Consumidor</a>
+                    class="CustomGatsbyLinkstyled__StyledLink-sc-yfkh4o-0 eFouJl" href="/informacion-legal">Contratos de
+                    adhesión – Ley 24.240 de Defensa del Consumidor</a>
             </div>
             <div class="MbPageFooterstyled__CustomLinkWrapper-sc-1fsql5y-2 bbklCY"><a data-testid="gatsbyLink"
                     class="CustomGatsbyLinkstyled__StyledLink-sc-yfkh4o-0 eFouJl"
@@ -208,7 +314,7 @@
                     href="/informacion-normativa">Información Normativa</a>
             </div>
         </div>
-        
+
     </footer>
 
 
@@ -228,6 +334,6 @@
 
 
 
-                <!-- <video class="video_Header" loop muted autoplay> 
+<!-- <video class="video_Header" loop muted autoplay> 
                     <source src="../image/header.mp4" type="video/mp4">
                 </video> -->

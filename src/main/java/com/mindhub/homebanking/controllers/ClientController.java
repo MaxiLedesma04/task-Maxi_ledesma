@@ -32,9 +32,9 @@ public class ClientController {
     private String Rnumber(){
         String random;
         do{
-            int number = (int)(Math.random()*001+999);
+            int number = (int)(Math.random()*(001+999));
             random="VIN-" + number;
-        }while (accountRepository.findByNumber(random) == null);
+        }while (accountRepository.findByNumber(random) != null);
         return random;
     }
 

@@ -17,7 +17,7 @@ const options = {
             axios.get(url)
                 .then(response => {
                     this.clients = response.data
-                    // console.log(this.clients)
+                    console.log(this.clients)
                     this.clients_accounts = this.clients.accounts
                     const numberF = Intl.NumberFormat('es-US', {
                         style: 'currency',

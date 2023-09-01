@@ -60,15 +60,15 @@ public class CardController {
                         clientRepository.save(clientAuthent);
                         cardRepository.save(newCard);
                     }else{
-                        return new ResponseEntity<>("Para mono no podes crear" + color.toString().toLowerCase() + "tarjeta en" + type.toString().toLowerCase(), HttpStatus.FORBIDDEN);
+                        return new ResponseEntity<>("Es imposible crear una tarjerta de " + color.toString().toLowerCase() + " en " + type.toString().toLowerCase(), HttpStatus.FORBIDDEN);
                     }
                 } else {
-                    return new ResponseEntity<>("Epa queres tener mas de 3 tarjetas... nono no se puede", HttpStatus.FORBIDDEN);
+                    return new ResponseEntity<>("Lo sentimos no puede tener mas de 3 Tarjetas", HttpStatus.FORBIDDEN);
                 }
             }else {
                 return new ResponseEntity<>("Completa todo porfis :)", HttpStatus.FORBIDDEN);
             }
-        return new ResponseEntity<>("Esooo endeudese con gusto", HttpStatus.CREATED);
+        return new ResponseEntity<>("Perfecto a obtenido una tarjeta nueva", HttpStatus.CREATED);
        }
 }
 

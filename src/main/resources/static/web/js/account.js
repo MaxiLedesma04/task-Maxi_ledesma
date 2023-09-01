@@ -1,5 +1,5 @@
 const { createApp } = Vue
-const url = "/api/clients/accounts/${this.parametroid}"
+const url = "/api/clients/accounts/"
 const options = {
     data() {
         return {
@@ -17,7 +17,7 @@ const options = {
             const nuevoparametro = new URLSearchParams(parametro)
             this.parametroId = nuevoparametro.get("id")
             console.log(this.parametroId)
-            axios.get(url)
+            axios.get(url+ this.parametroId)
                 .then(response => {
                     this.accounts = response.data
                     this.transactions = this.accounts.transactions.sort((a,b)=> b.id - a.id)

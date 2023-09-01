@@ -7,6 +7,7 @@ const options = {
             firstName: "",
             lastName: "",
             showAlert: false,
+            showForm: true,
 
         };
     },
@@ -31,6 +32,12 @@ const options = {
                         this.showAlert = true;
                     }
                 })
+        },
+        mostrarLog(){
+            this.showForm = false;
+        },
+        mostrarSingUp(){
+            this.showForm = true;
         },
 
         logout() {
