@@ -1,20 +1,20 @@
 package com.mindhub.homebanking.controllers;
 
 import com.mindhub.homebanking.dtos.ClientLoanDTO;
+import com.mindhub.homebanking.dtos.LoanAplicationDTO;
 import com.mindhub.homebanking.dtos.LoanDTO;
-import com.mindhub.homebanking.models.Client;
-import com.mindhub.homebanking.repositories.ClientLoanRepository;
-import com.mindhub.homebanking.repositories.ClientRepository;
-import com.mindhub.homebanking.repositories.LoanRepository;
+import com.mindhub.homebanking.models.*;
+import com.mindhub.homebanking.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
+import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -28,61 +28,54 @@ public class LoansController {
 
     @Autowired
     private ClientRepository clientRepository;
+    @Autowired
+    private AccountRepository accountRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private TransactionRepository transactionRepository;
 
     @RequestMapping("/api/loans")
     public List<LoanDTO> getLoans(){
         return loanRepository.findAll().stream().map(LoanDTO::new).collect(toList());
     }
 
-    @RequestMapping("/api/clients/current/loans")
-    public ResponseEntity<Object> getLoans(Authentication authentication){
-        Client client = clientRepository.findByEmail(authentication.getName());
-        return ResponseEntity.ok(client.getClientLoans().stream().map(ClientLoanDTO::new).collect(toList()));
-    }
+    @Transactional
+   @PostMapping("/api/loans")
+    public ResponseEntity<Object> createLoan(Authentication authentication, @RequestBody LoanAplicationDTO loanAplicationDTO){
+        Client clientAuth = clientRepository.findByEmail(authentication.getName());
+        Loan loan = loanRepository.findById(loanAplicationDTO.getId()).orElse(null);
+        Accounts accountsAuth = accountRepository.findByNumber(loanAplicationDTO.getNumber());
+        if (clientAuth == null){
+            return ResponseEntity.badRequest().body("El cliente no existe");
+        }
+        if (loan == null){
+            return new ResponseEntity<>("El préstamo no existe", HttpStatus.FORBIDDEN);
+        }
+        if (loanAplicationDTO.getAmount() > loan.getMaxAmount()){
+            return new ResponseEntity<>("El monto solicitado excede el monto máximo del préstamo", HttpStatus.FORBIDDEN);
+        }
+        if (!loanAplicationDTO.getPayments().containsAll(loan.getPayments())){
+            return new ResponseEntity<>("No hay esas cuotas proba con otra cosa o paga todo de una", HttpStatus.FORBIDDEN);
+        }
+        if(loanAplicationDTO.getNumber()==null){
+            return  new ResponseEntity<>("no tenes habilitada esa cuenta fijate nomas que haces con tus cosas", HttpStatus.FORBIDDEN);
 
-    @PostMapping("/api/clients/current/loans")
-    public ResponseEntity<Object> createLoan(Authentication authentication, @RequestParam String amount, @RequestParam String description, @RequestParam String originAccountNumber, @RequestParam String destinationAccountNumber){
-        Client client = clientRepository.findByEmail(authentication.getName());
-        Accounts accOrigin = accountRepository.findByNumber(originAccountNumber);
-        Accounts destinationA = accountRepository.findByNumber(destinationAccountNumber);
-        if (destinationAccountNumber.isBlank()){
-            return new ResponseEntity<>("Destination account number cannot be empty", HttpStatus.FORBIDDEN);
         }
-        if (originAccountNumber.isBlank()){
-            return new ResponseEntity<>("Origin account number cannot be empty", HttpStatus.FORBIDDEN);
-        }
-        if (accOrigin == null){
-            return new ResponseEntity<>("Origin account not found", HttpStatus.FORBIDDEN);
-        }
-        if(destinationA == null){
-            return new ResponseEntity<>("Destination account not found", HttpStatus.FORBIDDEN);
-        }
-        if(amount.isBlank() || Double.parseDouble(amount) <= 0){
-            return new ResponseEntity<>("Please enter a valid amount", HttpStatus.FORBIDDEN);
-        }
-        if (description.isBlank()){
-            return new ResponseEntity<>("Description cannot be empty", HttpStatus.FORBIDDEN);
-        }
-        if(accOrigin.getNumber() == destinationA.getNumber()){
-            return new ResponseEntity<>("You cannot transfer to the same account", HttpStatus.FORBIDDEN);
-        }
-        if( accOrigin.getBalance() < Double.parseDouble(amount) ){
-            return new ResponseEntity<>("Insufficient funds", HttpStatus.FORBIDDEN);
-        }
-        Loan newLoan = new Loan();
-        newLoan.setAmount(Double.parseDouble(amount));
-        newLoan.setDescription(description);
-        newLoan.setOriginAccount(accOrigin);
-        newLoan.setDestinationAccount(destinationA);
-        client.addLoan(newLoan);
-        clientRepository.save(client);
-        loanRepository.save(newLoan);
+       if (!clientAuth.getAccounts().contains(accountsAuth)) {
+           return new ResponseEntity<>("La cuenta de destino no pertenece al cliente autenticado", HttpStatus.FORBIDDEN);
+       }
+       long amountLoan = ((loanAplicationDTO.getAmount()/100)*20) + loanAplicationDTO.getAmount();
+
+       Loan newloan = new Loan(loanAplicationDTO.getId(), loanAplicationDTO.getNumber(), amountLoan, loanAplicationDTO.getPayments());
+
+       Transaction transacCredit = new Transaction(loanAplicationDTO.getAmount(), loanAplicationDTO.getNumber(), LocalDateTime.now(), TransactionType.Credit);
+
+       accountsAuth.addTransaction(transacCredit);
+       transactionRepository.save(transacCredit);
+       return null;
 
     }
-
 
 }
-
