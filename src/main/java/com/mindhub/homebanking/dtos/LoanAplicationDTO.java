@@ -7,8 +7,8 @@ public class LoanAplicationDTO {
     public Long id;
 
     public long amount;
-    @ElementCollection
-    private Set<Integer> payments;
+
+    private Integer payments;
 
     public String number;
 
@@ -16,7 +16,7 @@ public class LoanAplicationDTO {
 
     }
 
-    public LoanAplicationDTO(Long id, long amount, Set<Integer> payments, String number) {
+    public LoanAplicationDTO(Long id, long amount, Integer payments, String number) {
         this.id = id;
         this.amount = amount;
         this.payments = payments;
@@ -31,7 +31,7 @@ public class LoanAplicationDTO {
         return amount;
     }
 
-    public Set<Integer> getPayments() {
+    public Integer getPayments() {
         return payments;
     }
 

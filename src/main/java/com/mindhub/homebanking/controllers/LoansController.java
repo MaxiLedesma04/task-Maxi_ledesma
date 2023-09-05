@@ -22,6 +22,8 @@ import static java.util.stream.Collectors.toList;
 @RestController
 public class LoansController {
 
+    @Autowired
+    private  ClientLoanRepository clientLoanRepository;
 
     @Autowired
     private LoanRepository loanRepository;
@@ -44,7 +46,8 @@ public class LoansController {
     @Transactional
    @PostMapping("/api/loans")
     public ResponseEntity<Object> createLoan(Authentication authentication, @RequestBody LoanAplicationDTO loanAplicationDTO){
-        Client clientAuth = clientRepository.findByEmail(authentication.getName());
+        String username = authentication.getName();
+        Client clientAuth = clientRepository.findByEmail(username);
         Loan loan = loanRepository.findById(loanAplicationDTO.getId()).orElse(null);
         Accounts accountsAuth = accountRepository.findByNumber(loanAplicationDTO.getNumber());
         if (clientAuth == null){
@@ -56,7 +59,7 @@ public class LoansController {
         if (loanAplicationDTO.getAmount() > loan.getMaxAmount()){
             return new ResponseEntity<>("El monto solicitado excede el monto máximo del préstamo", HttpStatus.FORBIDDEN);
         }
-        if (!loanAplicationDTO.getPayments().containsAll(loan.getPayments())){
+        if (!loan.getPayments().contains(loanAplicationDTO.getPayments())){
             return new ResponseEntity<>("No hay esas cuotas proba con otra cosa o paga todo de una", HttpStatus.FORBIDDEN);
         }
         if(loanAplicationDTO.getNumber()==null){
@@ -68,14 +71,14 @@ public class LoansController {
        }
        long amountLoan = ((loanAplicationDTO.getAmount()/100)*20) + loanAplicationDTO.getAmount();
 
-       Loan newloan = new Loan(loanAplicationDTO.getId(), loanAplicationDTO.getNumber(), amountLoan, loanAplicationDTO.getPayments());
+       ClientLoan newClientLoan = new ClientLoan(amountLoan, loanAplicationDTO.getPayments());
 
        Transaction transacCredit = new Transaction(loanAplicationDTO.getAmount(), loanAplicationDTO.getNumber(), LocalDateTime.now(), TransactionType.Credit);
 
        accountsAuth.addTransaction(transacCredit);
+       clientLoanRepository.save(newClientLoan);
        transactionRepository.save(transacCredit);
-       return null;
-
+       return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 }

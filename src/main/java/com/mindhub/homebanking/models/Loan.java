@@ -30,8 +30,7 @@ public class Loan {
 
     }
 
-    public Loan(Long id, String name, long maxAmount, Set<Integer> payments) {
-        this.id = id;
+    public Loan( String name, long maxAmount, Set<Integer> payments) {
         this.name = name;
         this.maxAmount = maxAmount;
         this.payments = payments;

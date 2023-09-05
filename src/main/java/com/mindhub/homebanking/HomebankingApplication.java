@@ -36,11 +36,11 @@ public class HomebankingApplication {
 			LocalDate fromDate = LocalDate.now().plusYears(5);
 
 
-			Loan hipotecario = new Loan(null, "Hipotecario", 500000,
+			Loan hipotecario = new Loan( "Hipotecario", 500000,
 					new HashSet<>(Arrays.asList(12, 24, 36, 48, 60)));
-			Loan personal = new Loan(null, "Personal", 100000,
+			Loan personal = new Loan( "Personal", 100000,
 					new HashSet<>(Arrays.asList(6, 12, 24)));
-			Loan automotriz = new Loan(null, "Automotriz", 300000,
+			Loan automotriz = new Loan( "Automotriz", 300000,
 					new HashSet<>(Arrays.asList(6, 12, 24, 36)));
 			loanRepository.save(hipotecario);
 			loanRepository.save(personal);
@@ -93,22 +93,18 @@ public class HomebankingApplication {
 
 
 			ClientLoan clientLoan1 = new ClientLoan(400000L,
-					60,
-					hipotecario, melba);
+					60);
 
 			ClientLoan clientLoan2 = new ClientLoan(50000L,
-					12,
-					personal, melba);
+					12);
 
 			clientLoanRepository.save(clientLoan1);
 			clientLoanRepository.save(clientLoan2);
 
 			ClientLoan clientLoan3 = new ClientLoan(100000L,
-					24,
-					personal, jorge);
+					24);
 			ClientLoan clientLoan4 = new ClientLoan(200000L,
-					36,
-					automotriz, jorge);
+					36);
 
 
 
