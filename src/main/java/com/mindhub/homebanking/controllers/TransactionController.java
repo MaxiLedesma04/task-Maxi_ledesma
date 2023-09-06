@@ -7,6 +7,9 @@ import com.mindhub.homebanking.models.TransactionType;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.repositories.TransactionRepository;
+import com.mindhub.homebanking.service.AccountService;
+import com.mindhub.homebanking.service.ClientService;
+import com.mindhub.homebanking.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,20 +26,20 @@ import java.time.LocalDateTime;
 @RequestMapping("/api")
 public class TransactionController {
     @Autowired
-    private TransactionRepository transactionRepository;
+    private TransactionService transactionService;
     @Autowired
-    private AccountRepository accountRepository;
+    private AccountService accountService;
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientService clientService;
     @Transactional
     @PostMapping("/transactions")
     public ResponseEntity<Object> createTransaction(@RequestParam String amount,
                                                     @RequestParam String description,
                                                     @RequestParam String originAccountNumber,
                                                     @RequestParam String destinationAccountNumber, Authentication authentication){
-        Client currentC = clientRepository.findByEmail(authentication.getName());
-        Accounts accOrigin = accountRepository.findByNumber(originAccountNumber);
-        Accounts destinationA = accountRepository.findByNumber(destinationAccountNumber);
+        Client currentC = clientService.findByEmail(authentication.getName());
+        Accounts accOrigin = accountService.findByNumber(originAccountNumber);
+        Accounts destinationA = accountService.findByNumber(destinationAccountNumber);
         if (destinationAccountNumber.isBlank()){
             return new ResponseEntity<>("Destination account number cannot be empty", HttpStatus.FORBIDDEN);
         }
@@ -67,10 +70,10 @@ public class TransactionController {
             Transaction TransacCredit = new Transaction(Double.parseDouble(amount),description, LocalDateTime.now(), TransactionType.Credit);
             accOrigin.addTransaction(TransacDebit);
             destinationA.addTransaction(TransacCredit);
-            accountRepository.save(accOrigin);
-            accountRepository.save(destinationA);
-            transactionRepository.save(TransacDebit);
-            transactionRepository.save(TransacCredit);
+            accountService.save(accOrigin);
+            accountService.save(destinationA);
+            transactionService.save(TransacDebit);
+            transactionService.save(TransacCredit);
         }
         return new ResponseEntity<>("Transaction succesfully created", HttpStatus.CREATED);
     }
