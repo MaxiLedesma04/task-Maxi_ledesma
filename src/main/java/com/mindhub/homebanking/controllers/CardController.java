@@ -49,7 +49,7 @@ public class CardController {
                         String cardNumber = CardUtils.getCardNumber();
                         int cvv = getCvv();
 
-                        Card newCard = new Card(cardholder, type, color, cardNumber, cvv, LocalDate.now() ,LocalDate.now().plusYears(5));
+                        Card newCard = new Card(cardholder, type, color, cardNumber, cvv, LocalDate.now() ,LocalDate.now().plusYears(5), true);
                         clientAuthent.addCard(newCard);
                         clientService.save(clientAuthent);
                         cardService.save(newCard);
@@ -68,6 +68,25 @@ public class CardController {
     public static int getCvv() {
         int cvv = (int)((Math.random() * (999 - 100)) + 100);
         return cvv;
+    }
+
+    @PatchMapping("/api/clients/current/cards/deactivate")
+    public ResponseEntity<Object> disableCard(@RequestParam long id, Authentication authentication){
+        Card card = cardService.findById(id);
+        Client client = clientService.findByEmail(authentication.getName());
+        Boolean existCard = client.getCards().contains(card);
+        if(card == null){
+            return  new ResponseEntity<>("La tarjeta no existe", HttpStatus.FORBIDDEN);
+        }
+        if (!existCard){
+            return  new ResponseEntity<>("Esta tarjeta no pertece a este cliente", HttpStatus.FORBIDDEN);
+        }
+        if(card.isActive() == false){
+            return new ResponseEntity<>("Esta tarjeta ya fue eliminada", HttpStatus.FORBIDDEN);
+        }
+        card.setActive(false);
+        cardService.save(card);
+        return  new ResponseEntity<>("Se a eliminado la tarjeta con exito", HttpStatus.OK);
     }
 
 }

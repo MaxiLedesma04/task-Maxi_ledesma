@@ -156,9 +156,20 @@ box-shadow: -2px -2px 5px black,
     width: 35%;
     height: 15rem;
     color: #202020;
+    text-align: center;
 }
 .cuerpa_seccion img{
-    width: 20%;
+    width: 10%;
+    height: 15%;
+}
+.cuerpa_seccion h2{
+    padding: 0;
+    margin: 0;
+} 
+.cuerpa_seccion_carrito{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 .contenedor_tarjeta {
     width: 50rem;

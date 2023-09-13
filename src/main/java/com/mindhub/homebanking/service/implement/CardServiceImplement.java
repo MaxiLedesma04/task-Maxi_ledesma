@@ -20,4 +20,9 @@ public class CardServiceImplement implements CardService {
     public void save(Card newCard) {
         cardRepository.save(newCard);
     }
+
+    @Override
+    public Card findById(long id){
+        return cardRepository.findById(id).orElse(null);
+    }
 }

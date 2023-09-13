@@ -69,9 +69,9 @@ public class HomebankingApplication {
 //			account2.addTransaction(transaction2_1);
 //			account2.addTransaction(transaction2_2);
 //
-//			Card card1 = new Card("Melba", CardType.DEBIT, CardColor.GOLD, "2405 4457 45678 9875", 321, thruDate, fromDate);
-//			Card card2 = new Card("Melba", CardType.CREDIT, CardColor.TITANIUM, "2405 4835 4578 8897", 332, thruDate, fromDate);
-//			Card card3 = new Card("Jorge", CardType.CREDIT, CardColor.SILVER, "2405 4653 5489 7896", 223, thruDate, fromDate);
+//			Card card1 = new Card("Melba", CardType.DEBIT, CardColor.GOLD, "2405 4457 45678 9875", 321, thruDate, fromDate, true);
+//			Card card2 = new Card("Melba", CardType.CREDIT, CardColor.TITANIUM, "2405 4835 4578 8897", 332, thruDate, fromDate, true);
+//			Card card3 = new Card("Jorge", CardType.CREDIT, CardColor.SILVER, "2405 4653 5489 7896", 223, thruDate, fromDate, true);
 //			melba.addCard(card1);
 //			melba.addCard(card2);
 //			jorge.addCard(card3);

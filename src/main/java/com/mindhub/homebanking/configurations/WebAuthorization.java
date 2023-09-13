@@ -26,6 +26,7 @@ public class WebAuthorization {
                 .antMatchers("/manager/manager.html","/manager/manager.js","/api/clients","/rest/**","/h2-console/**").hasAnyAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET, "/api/web/accountStile/estilo2.css","/api/clients/current/**", "/api/clients/accounts", "/api/clients/current{id}","/api/clients/accounts/**","/api/clients/current/accounts").hasAuthority("Cliente")
                 .antMatchers(HttpMethod.POST, "/api/clients/current/**","/api/clients/current/accounts", "/api/clients/current/cards").hasAuthority("Cliente")
+                .antMatchers(HttpMethod.PATCH,  "/api/clients/current/cards/deactivate").hasAuthority("Cliente")
                 .antMatchers("/web/**").hasAnyAuthority("Cliente")
                 .anyRequest().denyAll();
         http.formLogin()

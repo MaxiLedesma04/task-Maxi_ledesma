@@ -15,11 +15,13 @@ public class CardDTO {
     private Integer cvv;
     private LocalDate thruDate;
     private  LocalDate fromDate;
+    private boolean isActive;
 
     public CardDTO() {
     }
 
     public CardDTO(Card card) {
+        this.id = card.getId();
         this.cardHolder = card.getCardHolder();
         this.type = card.getType();
         this.color = card.getColor();
@@ -27,6 +29,15 @@ public class CardDTO {
         this.cvv = card.getCvv();
         this.thruDate = card.getThrudate();
         this.fromDate = card.getFromDate();
+        this.isActive = card.isActive();
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public LocalDate getThruDate() {
+        return thruDate;
     }
 
     public long getId() {
