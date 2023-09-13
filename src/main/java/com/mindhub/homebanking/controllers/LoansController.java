@@ -40,7 +40,7 @@ public class LoansController {
     @Autowired
     private TransactionService transactionService;
 
-    @RequestMapping("/api/loans")
+    @GetMapping("/api/loans")
     public List<LoanDTO> getLoans(){
         return loanService.findAll();
     }

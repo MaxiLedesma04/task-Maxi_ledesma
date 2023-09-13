@@ -34,18 +34,18 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @RequestMapping("/api/accounts")
+    @GetMapping("/api/accounts")
     public List<AccountDTO> getAccounts(){
         return accountService.findAll();
     }
 
-    @RequestMapping("/api/clients/current/accounts")
+    @GetMapping("/api/clients/current/accounts")
     public List<AccountDTO> getAccounts(Authentication authentication){
         Client client = clientService.findByEmail(authentication.getName());
         return client.getAccounts().stream().map(AccountDTO::new).collect(toList());
     }
 
-    @RequestMapping("/api/clients/accounts/{id}")
+    @GetMapping("/api/clients/accounts/{id}")
     public ResponseEntity<Object> getAccount(@PathVariable Long id, Authentication authentication){
         Client client = clientService.findByEmail(authentication.getName());
         Accounts acc = accountService.findById(id);

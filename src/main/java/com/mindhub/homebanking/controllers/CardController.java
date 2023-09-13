@@ -10,14 +10,12 @@ import com.mindhub.homebanking.repositories.CardRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.service.CardService;
 import com.mindhub.homebanking.service.ClientService;
+import com.mindhub.homebanking.utils.CardUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -33,7 +31,7 @@ public class CardController {
     private CardService cardService;
 
 
-    @RequestMapping("/api/clients/current/cards")
+    @GetMapping("/api/clients/current/cards")
     public List<CardDTO> getCards(Authentication authentication){
         return clientService.findByEmail(authentication.getName()).getCards().stream().map(CardDTO::new).collect(toList());
     }
@@ -48,14 +46,8 @@ public class CardController {
             if(color != null || type != null){
                 if(filteredCardsByType.size() <= 2){
                     if(filteredCardsByColor.isEmpty()){
-                        String cardNumber;
-                        do{
-                            cardNumber = (int)((Math.random() * (9999-1000)) + 1000)
-                                    + "-" + (int)((Math.random() * (9999-1000)) + 1000)
-                                    + "-" + (int)((Math.random() * (9999-1000)) + 1000)
-                                    + "-" + (int)((Math.random() * (9999-1000)) + 1000);
-                        } while (cardService.findByNumber(cardNumber) != null);
-                        int cvv = (int)((Math.random() * (999 - 100)) + 100);
+                        String cardNumber = CardUtils.getCardNumber();
+                        int cvv = getCvv();
 
                         Card newCard = new Card(cardholder, type, color, cardNumber, cvv, LocalDate.now() ,LocalDate.now().plusYears(5));
                         clientAuthent.addCard(newCard);
@@ -72,6 +64,12 @@ public class CardController {
             }
         return new ResponseEntity<>("Perfecto a obtenido una tarjeta nueva", HttpStatus.CREATED);
        }
+
+    public static int getCvv() {
+        int cvv = (int)((Math.random() * (999 - 100)) + 100);
+        return cvv;
+    }
+
 }
 
 
