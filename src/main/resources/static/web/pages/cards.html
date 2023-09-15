@@ -182,7 +182,7 @@
                                     </svg>
                                     <p class="number">{{card.number}}</p>
                                     <p class="valid_thru">{{card.thruDate}}</p>
-                                    <p class="date_8264">{{card.fromDate}}</p>
+                                    <p :class="{'date_8264':card.fromDate >= dateNao, 'date_8265':card.fromDate < dateNao}">{{card.fromDate}}</p>
                                     <p class="name">{{card.cardHolder}}</p>
                                 </div>
                                 <div class="flip-card-back">
@@ -281,7 +281,7 @@
                                     </svg>
                                     <p class="number">{{card.number}}</p>
                                     <p class="valid_thru">{{card.thruDate}}</p>
-                                    <p class="date_8264">{{card.fromDate}}</p>
+                                    <p :class="{'date_8264':card.fromDate >= dateNao, 'date_8265':card.fromDate < dateNao}">{{card.fromDate}}</p>
                                     <p class="name">{{card.cardHolder}}</p>
                                 </div>
                                 <div class="flip-card-back">

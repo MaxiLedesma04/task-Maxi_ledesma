@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class Card {
@@ -20,6 +21,7 @@ public class Card {
     private LocalDate thruDate;
     private  LocalDate fromDate;
     private boolean isActive;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
     private Client client;
@@ -37,7 +39,10 @@ public class Card {
         this.thruDate = thrudate;
         this.fromDate = fromDate;
         this.isActive = isActive;
+
     }
+
+
 
     public boolean isActive() {
         return isActive;

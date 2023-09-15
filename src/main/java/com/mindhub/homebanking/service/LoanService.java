@@ -11,4 +11,8 @@ public interface LoanService {
     List<LoanDTO> findAll();
 
     Loan findById(Long id);
+
+    List<Integer> getPyments(String name);
+
+    void save(Loan loan);
 }

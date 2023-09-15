@@ -14,12 +14,6 @@ const options = {
     },
     methods: {
         loadData() {
-
-            axios.get('http://localhost:8080/api/clients/current',{headers:{'accept':'application/xml'}}).then(response =>
-
-            console.log(response.data))
-
-
             axios.get(url)
                 .then(response => {
                     this.clients = response.data

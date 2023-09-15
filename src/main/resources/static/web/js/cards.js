@@ -7,7 +7,7 @@ const options = {
             creditCards: [],
             debitCards:[],
             showForm: false,
-
+            dateNao: new Date().toISOString().slice(0, 10),
         };
     },
     created() {
@@ -15,16 +15,14 @@ const options = {
     },
     methods: {
         loadData() {
-
-            axios.get('http://localhost:8080/api/clients/current').then(response =>
-
-            console.log(response.data))
+            console.log(this.dateNao);
             axios.get(url)
                 .then(response => {
                     this.cards = response.data.filter(card => card.active)
                     // console.log(response)
                     console.log(this.cards)
                     this.creditCards = this.cards.filter(card => card.type == 'CREDIT');
+                    console.log(this.creditCards[0].fromDate);
                     this.debitCards = this.cards.filter(card => card.type == 'DEBIT');
                     
                 })

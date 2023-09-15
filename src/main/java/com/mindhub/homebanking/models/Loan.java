@@ -23,6 +23,7 @@ public class Loan {
     @ElementCollection
     @Column(name = "payments")
     private Set<Integer> payments= new HashSet<>();
+    private Double interes;
 
     @OneToMany(mappedBy = "loan", fetch = FetchType.EAGER)
     private  Set<ClientLoan> clientLoans = new HashSet<>();
@@ -30,11 +31,20 @@ public class Loan {
 
     }
 
-    public Loan( String name, long maxAmount, Set<Integer> payments) {
+    public Loan( String name, long maxAmount, Set<Integer> payments, Double interes) {
         this.name = name;
         this.maxAmount = maxAmount;
         this.payments = payments;
+        this.interes = interes;
     }
+
+    public Double getInteres() {
+        return interes;
+    }
+
+//    public void setInteres(Double interes) {
+//        this.interes = interes;
+//    }
 
     public Long getId() {
         return id;
@@ -83,5 +93,8 @@ public class Loan {
 
     public void setClientLoansSet(Set<ClientLoan> clientLoansSet) {
         this.clientLoans = clientLoansSet;
+    }
+
+    public void setInteres(Double interes) {
     }
 }

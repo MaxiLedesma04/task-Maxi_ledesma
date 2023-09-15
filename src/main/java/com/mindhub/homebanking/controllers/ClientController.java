@@ -52,7 +52,7 @@ public class ClientController {
         Client newClient = new Client(firstName, lastName,email, passwordEncoder.encode(password));
         clientService.save(newClient);
         String number = Rnumber();
-        Accounts newaccount = new Accounts(number, LocalDate.now(),0.0);
+        Accounts newaccount = new Accounts(number, LocalDate.now(),0.0, true);
         newClient.addAccount(newaccount);
         accountService.save(newaccount);
         return new ResponseEntity<>(HttpStatus.CREATED);

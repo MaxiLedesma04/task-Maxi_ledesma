@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Id;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -46,13 +47,13 @@ public class AccountController {
     }
 
     @GetMapping("/api/clients/accounts/{id}")
-    public ResponseEntity<Object> getAccount(@PathVariable Long id, Authentication authentication){
+    public ResponseEntity<Object> getAccount(@PathVariable Long id, Authentication authentication) {
         Client client = clientService.findByEmail(authentication.getName());
-        Accounts acc = accountService.findById(id);
-        if (client.getId() == acc.getClient().getId()) {
-            return new ResponseEntity<>(new AccountDTO(acc), HttpStatus.OK);
-        }else {
-            return new ResponseEntity<>("No tienes permiso para ver esta cuenta", HttpStatus.FORBIDDEN);
+        if (client.getAccounts() != null){
+            Accounts account = client.getAccounts().stream().filter(account1 -> account1.getId() == id).findFirst().orElse(null);
+            return new ResponseEntity<>(new AccountDTO(account), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Account not found", HttpStatus.FORBIDDEN);
         }
     }
 
@@ -60,13 +61,30 @@ public class AccountController {
     public ResponseEntity<Object> createAcc(Authentication authentication){
         if(clientService.findByEmail(authentication.getName()).getAccounts().size() <= 2){
             String numberAccount = Rnumber();
-            Accounts newAccount = new Accounts (numberAccount, LocalDate.now(), 0.0);
+            Accounts newAccount = new Accounts (numberAccount, LocalDate.now(), 0.0, true);
             clientService.findByEmail(authentication.getName()).addAccount(newAccount);
             accountService.save(newAccount);
         }else{
             return new ResponseEntity<>("la cantidad de cuentas excede las permitidas??", HttpStatus.FORBIDDEN);
         }
         return new ResponseEntity<>(HttpStatus.CREATED);
+
+    }
+
+    @PatchMapping("/appi/clients/current/accounts/deactivate")
+    public ResponseEntity<Object> elimaccount(@RequestParam String accNumber,
+            Authentication authentication){
+        Accounts account = accountService.findByNumber(accNumber);
+        Client client = clientService.findByEmail(authentication.getName());
+        if (account.isActive() == false){
+            return new ResponseEntity<>("Esta tarjeta ya fue eliminada", HttpStatus.FORBIDDEN);
+        }
+        if(account.getBalance() >= 0){
+            return  new ResponseEntity<>("No puede eliminar una cuenta con balance positivo", HttpStatus.FORBIDDEN);
+        }
+        account.setActive(false);
+        accountService.save(account);
+        return new ResponseEntity<>("Se elimino la cuenta con exito", HttpStatus.OK);
 
     }
 

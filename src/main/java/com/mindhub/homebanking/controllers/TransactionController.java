@@ -66,8 +66,8 @@ public class TransactionController {
         }else{
             accOrigin.setBalance(accOrigin.getBalance() - Double.parseDouble(amount));
             destinationA.setBalance(destinationA.getBalance() + Double.parseDouble(amount));
-            Transaction TransacDebit = new Transaction(Double.parseDouble(amount),description, LocalDateTime.now(), TransactionType.Debit);
-            Transaction TransacCredit = new Transaction(Double.parseDouble(amount),description, LocalDateTime.now(), TransactionType.Credit);
+            Transaction TransacDebit = new Transaction(Double.parseDouble(amount),description, LocalDateTime.now(), TransactionType.Debit, accOrigin.getBalance());
+            Transaction TransacCredit = new Transaction(Double.parseDouble(amount),description, LocalDateTime.now(), TransactionType.Credit, destinationA.getBalance());
             accOrigin.addTransaction(TransacDebit);
             destinationA.addTransaction(TransacCredit);
             accountService.save(accOrigin);

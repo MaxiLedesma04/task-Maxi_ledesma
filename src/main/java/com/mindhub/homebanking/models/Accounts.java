@@ -19,6 +19,7 @@ public class Accounts {
     private String number;
     private LocalDate dateTime;
     private double balance;
+    private boolean isActive;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
@@ -30,10 +31,19 @@ public class Accounts {
 
     public Accounts(){}
 
-    public Accounts(String number, LocalDate dateTime, double balance) {
+    public Accounts(String number, LocalDate dateTime, double balance, boolean isActive) {
         this.number = number;
         this.dateTime = dateTime;
         this.balance = balance;
+        this.isActive = isActive;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     public long getId() {

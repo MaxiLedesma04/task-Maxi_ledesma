@@ -1,10 +1,9 @@
 package com.mindhub.homebanking.controllers;
 
-import com.mindhub.homebanking.dtos.ClientLoanDTO;
+
 import com.mindhub.homebanking.dtos.LoanAplicationDTO;
 import com.mindhub.homebanking.dtos.LoanDTO;
 import com.mindhub.homebanking.models.*;
-import com.mindhub.homebanking.repositories.*;
 import com.mindhub.homebanking.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,17 +14,16 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
+import static com.mindhub.homebanking.utils.LoanUtils.calcularIntereses;
+
 
 @RestController
 public class LoansController {
 
     @Autowired
     private ClientLoanService clientLoanService;
-
 
     @Autowired
     private LoanService loanService;
@@ -39,6 +37,11 @@ public class LoansController {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private TransactionService transactionService;
+
+
+
+
+
 
     @GetMapping("/api/loans")
     public List<LoanDTO> getLoans(){
@@ -71,17 +74,17 @@ public class LoansController {
        if (!clientAuth.getAccounts().contains(accountsAuth)) {
            return new ResponseEntity<>("La cuenta de destino no pertenece al cliente autenticado", HttpStatus.FORBIDDEN);
        }
-       long amountLoan = ((loanAplicationDTO.getAmount()/100)*20) + loanAplicationDTO.getAmount();
+
+        Double interes = calcularIntereses(loan, loanAplicationDTO);
+
+       double amountLoan = ((interes/100) * loanAplicationDTO.getAmount()) + loanAplicationDTO.getAmount();
 
        ClientLoan newClientLoan = new ClientLoan(amountLoan, loanAplicationDTO.getPayments());
-
-
 
         newClientLoan.setClient(clientAuth);
         newClientLoan.setLoan(loan);
         clientLoanService.save(newClientLoan);
-        String transactionDescription = loan.getName() + "Loan approved.";
-        Transaction transacCredit = new Transaction(loanAplicationDTO.getAmount(), loanAplicationDTO.getNumber(), LocalDateTime.now(), TransactionType.Credit);
+        Transaction transacCredit = new Transaction(loanAplicationDTO.getAmount(), loanAplicationDTO.getNumber(), LocalDateTime.now(), TransactionType.Credit, accountsAuth.getBalance());
         transactionService.save(transacCredit);
         accountService.save(accountsAuth);
         accountsAuth.addTransaction(transacCredit);
