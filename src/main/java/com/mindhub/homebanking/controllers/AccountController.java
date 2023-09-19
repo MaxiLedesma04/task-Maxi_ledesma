@@ -1,8 +1,10 @@
 package com.mindhub.homebanking.controllers;
 
 import com.mindhub.homebanking.dtos.AccountDTO;
+import com.mindhub.homebanking.models.AccountType;
 import com.mindhub.homebanking.models.Accounts;
 import com.mindhub.homebanking.models.Client;
+import com.mindhub.homebanking.models.Transaction;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.service.AccountService;
@@ -17,6 +19,7 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
 
@@ -58,10 +61,14 @@ public class AccountController {
     }
 
     @PostMapping("/api/clients/current/accounts")
-    public ResponseEntity<Object> createAcc(Authentication authentication){
+    public ResponseEntity<Object> createAcc(@RequestParam String type ,Authentication authentication){
+        if( !type.equals("CHECKING") && !type.equals("SAVINGS") ){
+            return new ResponseEntity<>("Select the type", HttpStatus.FORBIDDEN);
+        }
+        AccountType accountType =  AccountType.valueOf(type);
         if(clientService.findByEmail(authentication.getName()).getAccounts().size() <= 2){
             String numberAccount = Rnumber();
-            Accounts newAccount = new Accounts (numberAccount, LocalDate.now(), 0.0, true);
+            Accounts newAccount = new Accounts (numberAccount, LocalDate.now(), 0.0, true, accountType);
             clientService.findByEmail(authentication.getName()).addAccount(newAccount);
             accountService.save(newAccount);
         }else{
@@ -76,7 +83,17 @@ public class AccountController {
             Authentication authentication){
         Accounts account = accountService.findByNumber(accNumber);
         Client client = clientService.findByEmail(authentication.getName());
-        if (account.isActive() == false){
+        Boolean existAccount = client.getAccounts().contains(account);
+        Set<Transaction> transactionSet = account.getTransactions();
+        Set<Accounts> accounts = client.getAccounts();
+        if(account == null){
+            return new ResponseEntity<>("La cuenta solicitada no existe", HttpStatus.FORBIDDEN);
+        }
+        if(!existAccount){
+            return new ResponseEntity<>("La cuenta no pertenece al cliente", HttpStatus.FORBIDDEN);
+        }
+
+        if (account.active() == false){
             return new ResponseEntity<>("Esta tarjeta ya fue eliminada", HttpStatus.FORBIDDEN);
         }
         if(account.getBalance() >= 0){

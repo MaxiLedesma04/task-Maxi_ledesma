@@ -16,6 +16,9 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashSet;
 
+import static com.mindhub.homebanking.models.AccountType.CHECKING;
+import static com.mindhub.homebanking.models.AccountType.SAVINGS;
+
 @SpringBootApplication
 public class HomebankingApplication {
 	@Autowired
@@ -64,8 +67,8 @@ public class HomebankingApplication {
 
 
 
-			Accounts account1 =new Accounts("VIN001", todayAcc, 5000.0, true);
-			Accounts account2 = new Accounts("VIN002", tomorrowyAcc, 7500.0, true);
+			Accounts account1 =new Accounts("VIN001", todayAcc, 5000.0, true, CHECKING);
+			Accounts account2 = new Accounts("VIN002", tomorrowyAcc, 7500.0, true, SAVINGS);
 			Client melba = new Client("Melba", "Morel","melbax@gmail.com", passwordEncoder.encode("Melba0501"));
 			repositoryClient.save(melba);
 			Client jorge = new Client("Jorge", "Gonzalez","jorgitox@gmail.com", passwordEncoder.encode("Jorjito10p"));

@@ -14,7 +14,7 @@ public class AccountDTO {
     private LocalDate dateTime;
     private double balance;
     private Set<TransactionDTO> transactions = new HashSet<>();
-    private boolean isActive;
+    private boolean active;
     public AccountDTO(){ }
 
 
@@ -27,7 +27,7 @@ public class AccountDTO {
         for (Transaction transaction : account.getTransactions()){
             this.transactions.add(new TransactionDTO(transaction));
         }
-        this.isActive = account.isActive();
+        this.active = account.active();
     }
 
     public Set<TransactionDTO> getTransactions() {
