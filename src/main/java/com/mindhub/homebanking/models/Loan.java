@@ -16,7 +16,6 @@ public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-
     private Long id;
     private String name;
     private long maxAmount;
@@ -37,6 +36,7 @@ public class Loan {
         this.payments = payments;
         this.interes = interes;
     }
+
 
     public Double getInteres() {
         return interes;

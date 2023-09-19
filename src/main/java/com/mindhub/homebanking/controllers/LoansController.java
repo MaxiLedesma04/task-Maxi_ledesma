@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import static com.mindhub.homebanking.utils.LoanUtils.calcularIntereses;
 
@@ -88,4 +89,25 @@ public class LoansController {
        return new ResponseEntity<>("creado con exito",HttpStatus.CREATED);
     }
 
+    @PostMapping("/create/loans")
+    public ResponseEntity<Object> createLoan(@RequestBody LoanDTO loanDTO){
+        Loan loan = loanService.findByName(loanDTO.getName());
+        long amount = loanDTO.getMaxAmount();
+        Set<Integer> payments = loanDTO.getPayments();
+        if (loan != null){
+            return new ResponseEntity<>("the loan already exists",HttpStatus.FORBIDDEN);
+        }
+        if (amount == 0){
+            return new ResponseEntity<>("Missing data",HttpStatus.FORBIDDEN);
+        }
+        if (payments == null){
+            return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+        }
+        if (amount < 0) {
+            return new ResponseEntity<>("The amount cannot be negative",HttpStatus.FORBIDDEN);
+        }
+        Loan newLoan = new Loan(loanDTO.getName(),amount,payments, loanDTO.getInteres());
+        loanService.save(newLoan);
+        return new ResponseEntity<>("Loan create",HttpStatus.OK);
+    }
 }

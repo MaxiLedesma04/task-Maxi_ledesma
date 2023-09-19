@@ -11,7 +11,7 @@ public class LoanDTO {
     private long maxAmount;
     @ElementCollection
     private Set<Integer> payments;
-//    private Double interes;
+    private Double interes;
 
     public LoanDTO() {
 
@@ -22,12 +22,12 @@ public class LoanDTO {
         this.name = loan.getName();
         this.maxAmount = loan.getMaxAmount();
         this.payments = loan.getPayments();
-//        this.interes = loan.getInteres();
+        this.interes = loan.getInteres();
     }
 
-//    public Double getInteres() {
-//        return interes;
-//    }
+    public Double getInteres() {
+        return interes;
+    }
 
     public Long getId() {
         return id;
@@ -43,5 +43,9 @@ public class LoanDTO {
 
     public Set<Integer> getPayments() {
         return payments;
+    }
+
+    public void setPayments(Set<Integer> payments) {
+        this.payments = payments;
     }
 }

@@ -15,4 +15,6 @@ public interface LoanService {
     List<Integer> getPyments(String name);
 
     void save(Loan loan);
+
+    Loan findByName(String name);
 }
