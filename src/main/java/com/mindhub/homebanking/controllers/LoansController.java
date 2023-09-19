@@ -39,10 +39,6 @@ public class LoansController {
     private TransactionService transactionService;
 
 
-
-
-
-
     @GetMapping("/api/loans")
     public List<LoanDTO> getLoans(){
         return loanService.findAll();

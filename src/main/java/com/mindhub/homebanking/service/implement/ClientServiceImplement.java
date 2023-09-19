@@ -36,5 +36,10 @@ public class ClientServiceImplement implements ClientService {
         return clientRepository.findById(id).map(ClientDTO::new).orElse(null);
     }
 
+    @Override
+    public Client findByCardNumber(String number) {
+        return clientRepository.findAll().stream().filter(c -> c.getCards().equals(number)).findFirst().orElse(null);
+    }
+
 
 }

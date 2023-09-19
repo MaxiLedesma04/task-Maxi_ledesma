@@ -16,4 +16,6 @@ public interface AccountService {
     Accounts findById(Long id);
 
     void save(Accounts newAccount);
+
+    List<Accounts> getAllAccounts();
 }

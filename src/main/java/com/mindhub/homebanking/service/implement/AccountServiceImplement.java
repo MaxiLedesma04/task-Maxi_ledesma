@@ -7,6 +7,7 @@ import com.mindhub.homebanking.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -37,4 +38,11 @@ public class AccountServiceImplement implements AccountService {
         accountRepository.save(newAccount);
 
     }
+
+    @Override
+    public List<Accounts> getAllAccounts() {
+        return accountRepository.findAll();
+    }
+
+
 }

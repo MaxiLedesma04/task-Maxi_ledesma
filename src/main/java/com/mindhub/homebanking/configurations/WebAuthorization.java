@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
+import org.springframework.web.cors.CorsConfiguration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +26,7 @@ public class WebAuthorization {
                 .antMatchers("/web/pages/index.html","/web/js/**","/web/accountStile/estilo2.css","/web/image/**", "/api/loans").permitAll()
                 .antMatchers("/manager/manager.html","/manager/manager.js","/api/clients","/rest/**","/h2-console/**").hasAnyAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET, "/api/web/accountStile/estilo2.css","/api/clients/current/**", "/api/clients/accounts", "/api/clients/current{id}","/api/clients/accounts/**","/api/clients/current/accounts", "/api/transactions").hasAuthority("Cliente")
-                .antMatchers(HttpMethod.POST, "/api/clients/current/**","/api/clients/current/accounts", "/api/clients/current/cards",  "/api/transactions").hasAuthority("Cliente")
+                .antMatchers(HttpMethod.POST, "/api/clients/current/**","/api/clients/current/accounts", "/api/clients/current/cards","/api/transactions", "/api/transaction/payment").hasAuthority("Cliente")
                 .antMatchers(HttpMethod.PATCH,  "/api/clients/current/cards/deactivate").hasAuthority("Cliente")
                 .antMatchers("/web/**").hasAnyAuthority("Cliente")
                 .anyRequest().denyAll();
@@ -38,7 +39,7 @@ public class WebAuthorization {
                 .loginPage("/api/login");
         http.logout().logoutUrl("/api/logout").deleteCookies("JSESSIONID");
 
-        http.csrf().disable();
+        http.csrf().disable().cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
         http.headers().frameOptions().disable();
         http.exceptionHandling().authenticationEntryPoint((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
         http.formLogin().successHandler((req, res, auth) -> clearAuthenticationAttributes(req));

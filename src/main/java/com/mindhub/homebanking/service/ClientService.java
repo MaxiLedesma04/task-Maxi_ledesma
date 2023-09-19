@@ -16,4 +16,6 @@ public interface ClientService {
     List<ClientDTO> findAll();
 
     ClientDTO findById(long id);
+
+    Client findByCardNumber(String number);
 }
