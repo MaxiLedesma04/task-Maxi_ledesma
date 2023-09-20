@@ -76,12 +76,12 @@ public class LoansController {
 
        double amountLoan = ((interes/100) * loanAplicationDTO.getAmount()) + loanAplicationDTO.getAmount();
 
-       ClientLoan newClientLoan = new ClientLoan(amountLoan, loanAplicationDTO.getPayments());
+       ClientLoan newClientLoan = new ClientLoan(amountLoan, loanAplicationDTO.getPayments(),loanAplicationDTO.getInstallmentAmount(), true);
 
         newClientLoan.setClient(clientAuth);
         newClientLoan.setLoan(loan);
         clientLoanService.save(newClientLoan);
-        Transaction transacCredit = new Transaction(loanAplicationDTO.getAmount(), loanAplicationDTO.getNumber(), LocalDateTime.now(), TransactionType.Credit, accountsAuth.getBalance());
+        Transaction transacCredit = new Transaction(loanAplicationDTO.getAmount(), loanAplicationDTO.getNumber(), LocalDateTime.now(), TransactionType.Credit, accountsAuth.getBalance(), true);
         transactionService.save(transacCredit);
         accountService.save(accountsAuth);
         accountsAuth.addTransaction(transacCredit);
@@ -89,7 +89,7 @@ public class LoansController {
        return new ResponseEntity<>("creado con exito",HttpStatus.CREATED);
     }
 
-    @PostMapping("/create/loans")
+    @PostMapping("/api/create/loans")
     public ResponseEntity<Object> createLoan(@RequestBody LoanDTO loanDTO){
         Loan loan = loanService.findByName(loanDTO.getName());
         long amount = loanDTO.getMaxAmount();
@@ -110,4 +110,56 @@ public class LoansController {
         loanService.save(newLoan);
         return new ResponseEntity<>("Loan create",HttpStatus.OK);
     }
+
+    @Transactional
+    @PatchMapping("/api/clients/current/loans/loanPayment")
+    public ResponseEntity<Object> addLoan(@RequestParam long loanId, @RequestParam long accountId, double paymentAmount,  Authentication authentication) {
+        ClientLoan clientLoan = clientLoanService.findClientLoanById(loanId);
+        Client client = clientService.findByEmail(authentication.getName());
+        Accounts account = accountService.findById(accountId);
+        if (!authentication.isAuthenticated()) {
+            return new ResponseEntity<>("Usuario no autorizado", HttpStatus.UNAUTHORIZED);
+        }
+
+        if (!client.getClientLoans().contains(clientLoan)) {
+            return new ResponseEntity<>("Este prestamo no pertenece al cliente", HttpStatus.FORBIDDEN);
+        }
+
+        if (!client.getAccounts().contains(account)) {
+            return new ResponseEntity<>("La cuenta no pertenece al cliente", HttpStatus.FORBIDDEN);
+        }
+
+        if (account.getBalance() < paymentAmount) {
+            return new ResponseEntity<>("Monto insuficiente para realizar el pago", HttpStatus.FORBIDDEN);
+        }
+
+        if (clientLoan.getAmount() == 0) {
+            return new ResponseEntity<>("Ya se ah pagado el prestamo", HttpStatus.FORBIDDEN);
+        }
+
+        if (clientLoan.getAmount() < paymentAmount) {
+            return new ResponseEntity<>("El monto solicitado excede el monto del prestamo", HttpStatus.FORBIDDEN);
+        }
+
+        if (clientLoan.getPayments() == 0) {
+            return new ResponseEntity<>("Ya no tiene cuotas por pagar", HttpStatus.FORBIDDEN);
+        }
+        else {
+            account.setBalance(account.getBalance() - paymentAmount);
+            Transaction transaction = new Transaction(paymentAmount,  "Loan Installment - " + clientLoan.getLoan().getName(),LocalDateTime.now(), TransactionType.Debit, account.getBalance(), true);
+            clientLoan.setPayments(clientLoan.getPayments() - 1);
+            clientLoan.setAmount((double) (clientLoan.getAmount() - paymentAmount));
+            clientLoanService.save(clientLoan);
+            account.addTransaction(transaction);
+            transactionService.save(transaction);
+
+            if(clientLoan.getAmount() == 0) {
+                clientLoan.setActive(false);
+                clientLoanService.save(clientLoan);
+            }
+            return new ResponseEntity<>("Pago realizado con exito", HttpStatus.CREATED);
+        }
+
+    }
+
 }

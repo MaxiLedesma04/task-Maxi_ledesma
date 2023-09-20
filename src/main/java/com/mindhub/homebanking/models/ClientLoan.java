@@ -21,13 +21,29 @@ public class ClientLoan {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private Client client;
+    private double installmentAmount;
 
+    private boolean isActive;
     public ClientLoan() {
     }
 
-    public ClientLoan(Double amount, Integer payments) {
+    public ClientLoan(Double amount, Integer payment, double installmentAmount, boolean isActive) {
         this.amount = amount;
-        this.payments = payments;
+        this.payments = payment;
+        this.installmentAmount = installmentAmount;
+        this.isActive = isActive;
+    }
+
+    public double getInstallmentAmount() {
+        return installmentAmount;
+    }
+
+    public void setInstallmentAmount(double installmentAmount) {
+        this.installmentAmount = installmentAmount;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 
     public Long getId() {
@@ -68,4 +84,7 @@ public class ClientLoan {
     public void setLoan(Loan loan) {
     }
 
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 }

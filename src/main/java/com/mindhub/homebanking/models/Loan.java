@@ -42,9 +42,9 @@ public class Loan {
         return interes;
     }
 
-//    public void setInteres(Double interes) {
-//        this.interes = interes;
-//    }
+    public void setInteres(Double interes) {
+        this.interes = interes;
+    }
 
     public Long getId() {
         return id;
@@ -95,6 +95,5 @@ public class Loan {
         this.clientLoans = clientLoansSet;
     }
 
-    public void setInteres(Double interes) {
-    }
+
 }

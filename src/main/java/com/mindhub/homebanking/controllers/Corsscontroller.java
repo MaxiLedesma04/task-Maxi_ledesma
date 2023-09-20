@@ -69,7 +69,7 @@ public class Corsscontroller {
             return new ResponseEntity<>("La descripcion no puede superar los 15 caracteres", HttpStatus.FORBIDDEN);
 
         }
-        Transaction transaction = new Transaction(transactionAplicationDTO.getAmount(), transactionAplicationDTO.getDescription(), LocalDateTime.now(), TransactionType.Debit, accountSelect.getBalance());
+        Transaction transaction = new Transaction(transactionAplicationDTO.getAmount(), transactionAplicationDTO.getDescription(), LocalDateTime.now(), TransactionType.Debit, accountSelect.getBalance(), true);
         accountPayment.addTransaction(transaction);
         accountPayment.setBalance(accountPayment.getBalance() - transactionAplicationDTO.getAmount());
         transactionService.save(transaction);
