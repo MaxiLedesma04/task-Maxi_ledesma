@@ -9,6 +9,7 @@ import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.service.AccountService;
 import com.mindhub.homebanking.service.ClientService;
+import com.mindhub.homebanking.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,8 @@ import static java.util.stream.Collectors.toList;
 public class AccountController {
     @Autowired
     private ClientService clientService;
+    @Autowired
+    private TransactionService transactionService;
     private String Rnumber(){
         String random;
         do{
@@ -99,10 +102,17 @@ public class AccountController {
         if(account.getBalance() >= 0){
             return  new ResponseEntity<>("No puede eliminar una cuenta con balance positivo", HttpStatus.FORBIDDEN);
         }
+        else {
+            for (Transaction transaction : transactionSet) {
+                transaction.setActive(false);
+                transactionService.save(transaction);
+            }
+            account.setActive(false);
+            accountService.save(account);
+        }
         account.setActive(false);
         accountService.save(account);
         return new ResponseEntity<>("Se elimino la cuenta con exito", HttpStatus.OK);
-
     }
 
 }

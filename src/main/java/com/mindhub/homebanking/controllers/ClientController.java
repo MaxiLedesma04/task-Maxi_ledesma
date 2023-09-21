@@ -73,9 +73,7 @@ public class ClientController {
 
     @GetMapping("/api/clients/current")
     public ClientDTO getClient(Authentication authentication) {
-
         return new ClientDTO(clientService.findByEmail(authentication.getName()));
-
     }
 
 }

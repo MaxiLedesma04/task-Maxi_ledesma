@@ -62,7 +62,7 @@ public class LoansController {
             return new ResponseEntity<>("El monto solicitado excede el monto máximo del préstamo", HttpStatus.FORBIDDEN);
         }
         if (!loan.getPayments().contains(loanAplicationDTO.getPayments())){
-            return new ResponseEntity<>("No hay esas cuotas proba con otra cosa o paga todo de una", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("No hay esas cuotas", HttpStatus.FORBIDDEN);
         }
         if(loanAplicationDTO.getNumber()==null){
             return  new ResponseEntity<>("no tenes habilitada esa cuenta", HttpStatus.FORBIDDEN);
@@ -80,9 +80,11 @@ public class LoansController {
 
         newClientLoan.setClient(clientAuth);
         newClientLoan.setLoan(loan);
-        clientLoanService.save(newClientLoan);
         Transaction transacCredit = new Transaction(loanAplicationDTO.getAmount(), loanAplicationDTO.getNumber(), LocalDateTime.now(), TransactionType.Credit, accountsAuth.getBalance(), true);
         transactionService.save(transacCredit);
+        accountService.save(accountsAuth);
+        clientLoanService.save(newClientLoan);
+        clientService.save(clientAuth);
         accountService.save(accountsAuth);
         accountsAuth.addTransaction(transacCredit);
 
@@ -95,7 +97,7 @@ public class LoansController {
         long amount = loanDTO.getMaxAmount();
         Set<Integer> payments = loanDTO.getPayments();
         if (loan != null){
-            return new ResponseEntity<>("the loan already exists",HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("El prestamo ya existe",HttpStatus.FORBIDDEN);
         }
         if (amount == 0){
             return new ResponseEntity<>("Missing data",HttpStatus.FORBIDDEN);
@@ -104,11 +106,11 @@ public class LoansController {
             return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
         }
         if (amount < 0) {
-            return new ResponseEntity<>("The amount cannot be negative",HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("El monto no puede ser negativo",HttpStatus.FORBIDDEN);
         }
         Loan newLoan = new Loan(loanDTO.getName(),amount,payments, loanDTO.getInteres());
         loanService.save(newLoan);
-        return new ResponseEntity<>("Loan create",HttpStatus.OK);
+        return new ResponseEntity<>("Prestamo creado",HttpStatus.OK);
     }
 
     @Transactional

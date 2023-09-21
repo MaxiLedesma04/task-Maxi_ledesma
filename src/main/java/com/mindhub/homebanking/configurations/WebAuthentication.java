@@ -20,11 +20,8 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
     private ClientRepository clientRepository;
 
     @Bean
-
     public PasswordEncoder passwordEncoder() {
-
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
     }
 
     @Override

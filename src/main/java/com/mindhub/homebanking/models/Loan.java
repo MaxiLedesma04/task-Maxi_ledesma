@@ -19,8 +19,7 @@ public class Loan {
     private Long id;
     private String name;
     private long maxAmount;
-    @ElementCollection
-    @Column(name = "payments")
+    @ElementCollection(fetch = FetchType.EAGER)
     private Set<Integer> payments= new HashSet<>();
     private Double interes;
 

@@ -9,7 +9,6 @@ public class LoanDTO {
     private Long id;
     private String name;
     private long maxAmount;
-    @ElementCollection
     private Set<Integer> payments;
     private Double interes;
 

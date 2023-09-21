@@ -98,9 +98,13 @@ public class HomebankingApplication {
 					60,48,true);
 			ClientLoan clientLoan2 = new ClientLoan(50000.0,
 					12, 6,true);
+			hipotecario.addClientLoan(clientLoan1);
+			personal.addClientLoan(clientLoan2);
+			melba.addClientLoan(clientLoan1);
+			melba.addClientLoan(clientLoan2);
+
 
 			clientLoanRepository.save(clientLoan1);
-
 			clientLoanRepository.save(clientLoan2);
 
 

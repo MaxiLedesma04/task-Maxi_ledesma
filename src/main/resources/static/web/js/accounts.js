@@ -46,6 +46,23 @@ const options = {
                 })
                 .catch(error => console.error(error))
         },
+        aliminarAcc(id){
+            Swal.fire({title: '¿Quieres eliminar la cuenta?',
+                inputAttributes: {autocapitalize: 'off'},
+                showCancelButton: true, 
+                confirmButtonText: "Seguro",
+                showLoaderOnConfirm: true,
+                 preConfirm: login =>{
+                 axios.delete("/appi/clients/current/accounts/deactivate", `id=${id}`)
+                    .then(response => {location.href = '../pages/accounts.html'})
+                    .catch(error=> {
+                        swal.fire({icon: 'error',
+                    text: error.response.data,
+                confirmButtonColor: '#5b31be93',});
+                    });
+                },
+                allowOutsideClick: () => !Swal.isLoading(),
+        })},
 
         createAcc(){
             Swal.fire({title: '¿Quieres crear una nueva cuenta?',
