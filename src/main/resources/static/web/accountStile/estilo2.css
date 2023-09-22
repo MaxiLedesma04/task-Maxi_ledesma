@@ -484,8 +484,7 @@ box-shadow: -2px -2px 5px black,
 }
 .pie{
     height: 15rem;
-    /* background-color: #5ba8a0; */
-    border: solid 1px #5ba8a0;
+    border-top: solid 1px #5ba8a0;
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
@@ -498,6 +497,8 @@ box-shadow: -2px -2px 5px black,
 
 .body-sinUp{
     font-family: Arial, sans-serif;
+    display: flex;
+    flex-wrap: wrap;
 }
 .sinUp-formul-header{
     width: 100%;
@@ -505,11 +506,17 @@ box-shadow: -2px -2px 5px black,
     background-image: linear-gradient(0, rgba(254, 178, 45, 0.31) 0%, rgba(254, 178, 45, 0.31) 16.667%,rgba(233, 154, 68, 0.31) 16.667%, rgba(233, 154, 68, 0.31) 33.334%,rgba(212, 131, 91, 0.31) 33.334%, rgba(212, 131, 91, 0.31) 50.001000000000005%,rgba(191, 107, 115, 0.31) 50.001%, rgba(191, 107, 115, 0.31) 66.668%,rgba(170, 84, 138, 0.31) 66.668%, rgba(170, 84, 138, 0.31) 83.33500000000001%,rgba(149, 60, 161, 0.31) 83.335%, rgba(149, 60, 161, 0.31) 100.002%),linear-gradient(90deg, rgb(77, 244, 119) 0%, rgb(77, 244, 119) 14.286%,rgb(76, 233, 127) 14.286%, rgb(76, 233, 127) 28.572%,rgb(75, 221, 136) 28.572%, rgb(75, 221, 136) 42.858%,rgb(74, 210, 144) 42.858%, rgb(74, 210, 144) 57.144%,rgb(72, 198, 152) 57.144%, rgb(72, 198, 152) 71.42999999999999%,rgb(71, 187, 161) 71.43%, rgb(71, 187, 161) 85.71600000000001%,rgb(70, 175, 169) 85.716%, rgb(70, 175, 169) 100.002%);
     font-family: Rubik, sans-serif, sans-serif;
     display: flex;
-    gap: 10rem;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 .sinUp-formul-header-logo{
+    width: 20%;
+    height: 90%;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
     display: flex;
     justify-content: flex-start;
+    padding: 2rem;
 }
 .sinUp-formul-header-text{
     width: 40%;
@@ -529,6 +536,7 @@ box-shadow: -2px -2px 5px black,
 }
 .sinUp-formul-header-anchor a{
     text-decoration: none;
+    color: white;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -562,6 +570,10 @@ box-shadow: -2px -2px 5px black,
     align-items: center;
     justify-content: center;
     height: 100vh; 
+}
+.sinUp-formul-main-h2{
+    font-family: Rubik, sans-serif, sans-serif;
+    color: #008000;
 }
 
 .sinUp-formul-form {
@@ -825,4 +837,28 @@ box-shadow: -2px -2px 5px black,
 .info{
     border: solid 2px rgb(143, 143, 143);
     border-radius: 5%;
+}
+.loan-uno{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+.loan-form{
+    width: 40%;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid 2px rgb(143, 143, 143);
+    border-radius: 5%;
+}
+.form-group{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
 }

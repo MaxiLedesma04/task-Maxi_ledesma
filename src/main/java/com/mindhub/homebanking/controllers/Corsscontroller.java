@@ -3,10 +3,7 @@ package com.mindhub.homebanking.controllers;
 import com.mindhub.homebanking.dtos.AccountDTO;
 import com.mindhub.homebanking.dtos.ClientDTO;
 import com.mindhub.homebanking.dtos.TransactionAplicationDTO;
-import com.mindhub.homebanking.models.Accounts;
-import com.mindhub.homebanking.models.Card;
-import com.mindhub.homebanking.models.Transaction;
-import com.mindhub.homebanking.models.TransactionType;
+import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.service.AccountService;
 import com.mindhub.homebanking.service.CardService;
 import com.mindhub.homebanking.service.ClientService;
@@ -14,14 +11,15 @@ import com.mindhub.homebanking.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDate;
 import java.util.Set;
-
+@RestController
+@RequestMapping("/api")
+@CrossOrigin
 public class Corsscontroller {
 
     @Autowired
@@ -47,13 +45,13 @@ public class Corsscontroller {
         if(card.getFromDate().isBefore(ChronoLocalDate.from(LocalDateTime.now()))){
             return new ResponseEntity<>("Card is not active", HttpStatus.FORBIDDEN);
         }
-        ClientDTO client = clientService.findById(transactionAplicationDTO.getId());
+        Client client = card.getClient();
         if(client == null){
             return  new ResponseEntity<>("Cliente no autorizado", HttpStatus.FORBIDDEN);
         }
-        Set<AccountDTO> account = client.getAccounts();
-        AccountDTO accountSelect = account.stream().filter(account1 -> account1.getBalance() >= transactionAplicationDTO.getAmount()).findFirst().orElse(null);
-        Accounts accountPayment = new Accounts(accountSelect);
+        Set<Accounts> account = client.getAccounts();
+        Accounts accountSelect = account.stream().filter(account1 -> account1.getBalance() >= transactionAplicationDTO.getAmount()).findFirst().orElse(null);
+        Accounts accountPayment = new Accounts(new AccountDTO(accountSelect));
         if(accountSelect == null){
             return new ResponseEntity<>("No dispone de ese monto", HttpStatus.FORBIDDEN);
         }

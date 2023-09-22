@@ -29,19 +29,6 @@ public class HomebankingApplication {
 		SpringApplication.run(HomebankingApplication.class, args);
 	}
 	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/*")
-						.allowedOrigins("")
-						.allowedMethods("")
-						.allowedHeaders("")
-						.allowedOriginPatterns("*");
-			}
-		};
-	}
-	@Bean
 	public CommandLineRunner initData(ClientRepository repositoryClient, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository, ClientLoanRepository clientLoanRepository, CardRepository cardRepository) {
 
 		return (args) -> {

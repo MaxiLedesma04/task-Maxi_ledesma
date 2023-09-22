@@ -14,7 +14,7 @@ const options = {
 
     methods: {
         login() {
-            axios.post('http://localhost:8080/api/login', `email=${this.email}&password=${this.password}`, {
+            axios.post('/api/login', `email=${this.email}&password=${this.password}`, {
                 headers: {
                     'content-type': 'application/x-www-form-urlencoded'
                 }
@@ -41,7 +41,7 @@ const options = {
         },
 
         logout() {
-            axios.post('http://localhost:8080/api/logout')
+            axios.post('/api/logout')
                 .then(response => {
                     location.href = '/web/pages/index.html';
                 })

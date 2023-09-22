@@ -1,8 +1,5 @@
 package com.mindhub.homebanking.controllers;
 
-
-
-
 import com.mindhub.homebanking.dtos.ClientDTO;
 import com.mindhub.homebanking.models.Accounts;
 import com.mindhub.homebanking.models.Client;
@@ -44,11 +41,20 @@ public class ClientController {
     public ResponseEntity<Object> register(
             @RequestParam String firstName, @RequestParam String lastName,
             @RequestParam String email, @RequestParam String password) {
-        if (firstName.isEmpty()|| lastName.isEmpty()|| email.isEmpty() || password.isEmpty()) {
-            return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+        if (firstName.isBlank()) {
+            return new ResponseEntity<>("No introdujo un nombre", HttpStatus.FORBIDDEN);
+        }
+        if(lastName.isBlank()){
+            return new ResponseEntity<>("No introdujo un apellido", HttpStatus.FORBIDDEN);
+        }
+        if(email.isBlank()){
+            return new ResponseEntity<>("No introdujo un email", HttpStatus.FORBIDDEN);
+        }
+        if(password.isBlank()){
+            return new ResponseEntity<>("No introdujo una contraseña", HttpStatus.FORBIDDEN);
         }
         if (clientService.findByEmail(email) !=  null) {
-            return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("El email ya esta en uso", HttpStatus.FORBIDDEN);
         }
         Client newClient = new Client(firstName, lastName,email, passwordEncoder.encode(password));
         clientService.save(newClient);

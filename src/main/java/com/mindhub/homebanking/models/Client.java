@@ -13,18 +13,15 @@ public class Client {
     @GenericGenerator(name="native", strategy = "native")
     private Long id;
     private String firstName;
-
     private String lastName;
-
     private String email;
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private Set<Accounts> accounts = new HashSet<>();
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private Set<ClientLoan> clientLoans = new HashSet<>();
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
-    private Set<Card> cards = new HashSet<>();
+    private Set<Card> cards = new HashSet<>(); //Crea una nueva instancia en memoria del objeto HashSet<>()
     private String password;
-
 
     public Client() { }
 

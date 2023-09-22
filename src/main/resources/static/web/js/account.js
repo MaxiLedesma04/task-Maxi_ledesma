@@ -26,7 +26,7 @@ const options = {
         },
         
         logout() {
-            axios.post('http://localhost:8080/api/logout')
+            axios.post('/api/logout')
                 .then(response => {
                     location.href = '/web/pages/index.html';
                 })
