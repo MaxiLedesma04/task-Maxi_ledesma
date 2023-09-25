@@ -13,6 +13,12 @@ public class Client {
     @GenericGenerator(name="native", strategy = "native")
     private Long id;
     private String firstName;
+    /*
+    * private
+    * default
+    * protected
+    * public
+    * */
     private String lastName;
     private String email;
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
+import static com.mindhub.homebanking.utils.CardUtils.getCardNumber;
 import static java.util.stream.Collectors.toList;
 
 @RestController
@@ -37,19 +38,18 @@ public class CardController {
     }
 
     @PostMapping("/api/clients/current/cards")
-        public ResponseEntity<Object> createCc(@RequestParam CardColor color, @RequestParam CardType type, Authentication authentication){
+        public ResponseEntity<Object> createCc(@RequestParam String color, @RequestParam String type, Authentication authentication){
             Client clientAuthent = clientService.findByEmail(authentication.getName());
             String cardholder = clientAuthent.getFirstName() + " " + clientAuthent.getLastName();
-            List<Card> filteredCardsByType = clientAuthent.getCards().stream().filter(c -> c.getType() == type).collect(toList());
-            List<Card> filteredCardsByColor = filteredCardsByType.stream().filter(c -> c.getColor() == color).collect(toList());
+            List<Card> filteredCardsByType = clientAuthent.getCards().stream().filter(c -> c.getType() == CardType.valueOf(type)).collect(toList());
+            List<Card> filteredCardsByColor = filteredCardsByType.stream().filter(c -> c.getColor() == CardColor.valueOf(color)).collect(toList());
 
             if(color != null || type != null){
                 if(filteredCardsByType.size() <= 2){
                     if(filteredCardsByColor.isEmpty()){
-                        String cardNumber = CardUtils.getCardNumber();
+                        String cardNumber = getCardNumber();
                         int cvv = getCvv();
-
-                        Card newCard = new Card(cardholder, type, color, cardNumber, cvv, LocalDate.now() ,LocalDate.now().plusYears(5), true);
+                        Card newCard = new Card(cardholder, CardType.valueOf(type), CardColor.valueOf(color), cardNumber, cvv, LocalDate.now() ,LocalDate.now().plusYears(5), true);
                         clientAuthent.addCard(newCard);
                         clientService.save(clientAuthent);
                         cardService.save(newCard);
@@ -75,6 +75,10 @@ public class CardController {
         Card card = cardService.findById(id);
         Client client = clientService.findByEmail(authentication.getName());
         Boolean existCard = client.getCards().contains(card);
+        List<Card> activeCards = client.getCards().stream().filter(c -> c.isActive() == card.isActive()).collect(toList());
+        if(activeCards.size() <= 2){
+            return new ResponseEntity<>("No puede quedarse sin tarjetas", HttpStatus.FORBIDDEN);
+        }
         if(card == null){
             return  new ResponseEntity<>("La tarjeta no existe", HttpStatus.FORBIDDEN);
         }

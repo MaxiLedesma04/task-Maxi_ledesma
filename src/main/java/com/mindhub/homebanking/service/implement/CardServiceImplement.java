@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class CardServiceImplement implements CardService {
 
     @Autowired
-    CardRepository cardRepository;
+    private CardRepository cardRepository;
     @Override
     public Card findByNumber(String cardNumber) {
         return cardRepository.findByNumber(cardNumber);

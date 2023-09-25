@@ -56,7 +56,7 @@ public class Accounts {
     }
 
     public void setActive(boolean active) {
-        active = active;
+        this.active = active;
     }
 
     public long getId() {

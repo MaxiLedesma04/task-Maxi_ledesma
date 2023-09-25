@@ -61,6 +61,12 @@ public class LoansController {
         if (loanAplicationDTO.getAmount() > loan.getMaxAmount()){
             return new ResponseEntity<>("El monto solicitado excede el monto máximo del préstamo", HttpStatus.FORBIDDEN);
         }
+        if(loanAplicationDTO.getAmount() < 10000 && loanAplicationDTO.getAmount() >= 0){
+            return new ResponseEntity<>("El monto minimo a solicitar es de $10.000", HttpStatus.FORBIDDEN);
+        }
+        if (loanAplicationDTO.getAmount() < 0){
+            return new ResponseEntity<>("No puede ingresar montos negativos", HttpStatus.FORBIDDEN);
+        }
         if (!loan.getPayments().contains(loanAplicationDTO.getPayments())){
             return new ResponseEntity<>("No hay esas cuotas", HttpStatus.FORBIDDEN);
         }

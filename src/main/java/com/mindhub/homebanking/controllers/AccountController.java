@@ -81,7 +81,7 @@ public class AccountController {
 
     }
 
-    @PatchMapping("/appi/clients/current/accounts/deactivate")
+    @PatchMapping("/api/clients/current/accounts/deactivate")
     public ResponseEntity<Object> elimaccount(@RequestParam String accNumber,
             Authentication authentication){
         Accounts account = accountService.findByNumber(accNumber);
@@ -99,7 +99,7 @@ public class AccountController {
         if (account.active() == false){
             return new ResponseEntity<>("Esta tarjeta ya fue eliminada", HttpStatus.FORBIDDEN);
         }
-        if(account.getBalance() >= 0){
+        if(account.getBalance() > 0){
             return  new ResponseEntity<>("No puede eliminar una cuenta con balance positivo", HttpStatus.FORBIDDEN);
         }
         else {

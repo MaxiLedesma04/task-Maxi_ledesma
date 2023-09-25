@@ -27,12 +27,14 @@ const options = {
                     }
                 })
                 .catch(error => {
-                    console.error(error);
-                    if (error.response && error.response.status === 401) {
-                        this.showAlert = true;
-                    }
-                })
-        },
+                    console.log(error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: error.response.data,
+                        confirmButtonColor: '#5b31be93',
+                    })
+    })},
         mostrarLog(){
             this.showForm = false;
         },
@@ -56,6 +58,15 @@ const options = {
                 .then(response => {
                  this.login()
             })
+            .catch(error => {
+                console.log(error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error.response.data,
+                    confirmButtonColor: '#5b31be93',
+                })
+})
         }
 
     }

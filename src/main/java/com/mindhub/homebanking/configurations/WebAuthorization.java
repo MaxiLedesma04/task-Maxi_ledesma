@@ -27,8 +27,8 @@ public class WebAuthorization {
                 .antMatchers(HttpMethod.POST,"/api/create/loans").hasAuthority("ADMIN")
                 .antMatchers("/manager/manager.html","/manager/manager.js","/api/clients","/rest/**","/h2-console/**", "/api/create/loans","/manager/createLoan.html", "/manager/managerjs/createLoan.js", "/manager/managerJs/createLoan.js").hasAnyAuthority("ADMIN")
                 .antMatchers(HttpMethod.GET, "/api/web/accountStile/estilo2.css","/api/clients/current/**", "/api/clients/accounts", "/api/clients/current{id}","/api/clients/accounts/**","/api/clients/current/accounts", "/api/transactions").hasAuthority("Cliente")
-                .antMatchers(HttpMethod.POST, "/api/clients/current/**","/api/clients/current/accounts", "/api/clients/current/cards","/api/transactions", "/api/clients/current/loans/loanPayment").hasAuthority("Cliente")
-                .antMatchers(HttpMethod.PATCH,  "/api/clients/current/cards/deactivate", "/api/clients/current/loans/loanPayment").hasAuthority("Cliente")
+                .antMatchers(HttpMethod.POST, "/api/clients/current/accounts", "/api/clients/current/cards","/api/transactions", "/api/clients/current/loans/loanPayment", "/api/loans").hasAuthority("Cliente")
+                .antMatchers(HttpMethod.PATCH,  "/api/clients/current/cards/deactivate", "/api/clients/current/loans/loanPayment", "/api/clients/current/accounts/deactivate").hasAuthority("Cliente")
                 .antMatchers("/web/**").hasAnyAuthority("Cliente")
                 .anyRequest().denyAll();
         http.formLogin()
