@@ -1,30 +1,19 @@
 package com.mindhub.homebanking.controllers;
 
-import com.mindhub.homebanking.dtos.AccountDTO;
-import com.mindhub.homebanking.dtos.ClientDTO;
-import com.mindhub.homebanking.dtos.LoanAplicationDTO;
-import com.mindhub.homebanking.dtos.TransactionAplicationDTO;
 import com.mindhub.homebanking.models.*;
-import com.mindhub.homebanking.repositories.AccountRepository;
-import com.mindhub.homebanking.repositories.ClientRepository;
-import com.mindhub.homebanking.repositories.TransactionRepository;
 import com.mindhub.homebanking.service.AccountService;
 import com.mindhub.homebanking.service.CardService;
 import com.mindhub.homebanking.service.ClientService;
 import com.mindhub.homebanking.service.TransactionService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.plaf.PanelUI;
-import javax.transaction.Transactional;
+
 import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDate;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -84,8 +73,6 @@ public class TransactionController {
         }
         return new ResponseEntity<>("Transaction succesfully created", HttpStatus.CREATED);
     }
-
-
 
     }
 

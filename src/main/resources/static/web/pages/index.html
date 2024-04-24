@@ -1,114 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Inicio</title>
     <link rel="shortcut icon" href="../image/banco.png" type="image/x-icon">
     <link rel="stylesheet" href="../accountStile/estilo2.css">
 </head>
-
 <body class="body-sinUp">
-
-    <div id="app" class="sinUp-formul" v-cloak>
-
-        <Header class="sinUp-formul-header">
+<div id="app" class="sinUp-formul" v-cloak>
+    <Header class="sinUp-formul-header">
             <div class="sinUp-formul-header-logo">
                 <img src="../image/banco.png" alt="Logo">
             </div>
-
             <div class="sinUp-formul-header-text">
-
-                <H1>
-                    Bienvenido a Homebanking
-                </H1>
-
+                <button>
+                 <H1>GREEN BANKING</H1>
+                </button>
             </div>
             <div>
                 <h4 class="sinUp-formul-header-anchor">
-                    <a href="">Personas</a>
-                    <a href="">Empresas</a>
-                    <a href="">Gobierno</a>
+                    <a href="">Clients</a>
+                    <a href="">Companies</a>
+                    <a href="">Gobernment</a>
                 </h4>
             </div>
-
-        </Header>
-
-
-
-
-
-        <main class="sinUp-formul-main">
-            <div class="sinUp-formul-main-main">
-                <section>
-                    
-                    <div v-if="showForm">
-
-                        <form class="sinUp-formul-form">
-                            <h2 class="sinUp-formul-main-h2">Registro</h2>
-                            <label for="firstName">Nombre:</label>
-                            <input class="sinUp-formul-form-input" type="text" id="firstName" v-model="firstName"
-                                required><br>
-
-                            <label for="lastName">Apellido:</label>
-                            <input class="sinUp-formul-form-input" type="text" id="lastName" v-model="lastName"
-                                required><br>
-
-                            <label for="email">Correo Electrónico:</label>
-                            <input class="sinUp-formul-form-input" type="email" id="email" v-model="email" required><br>
-
-                            <label for="password">Contraseña:</label>
-                            <input class="sinUp-formul-form-input" type="password" id="password" v-model="password"
-                                required><br>
-
-                            <button class="sinUp-formul-form-button-sign" @click.prevent="signUp" type="submit">Crear
-                                Cuenta</button>
-                        </form>
-                        <button class="sinUp-formul-form-button" @click.prevent="mostrarLog">Iniciar Sesión</button>
+    </Header>
+    <main class="sinUp-formul-main">
+            <div>                    
+                <div v-if="showForm">
+                    <form class="sinUp-formul-form">
+                        <h2 class="sinUp-formul-main-h2">Register</h2>
+                        <label for="firstName">Name   :            </label>
+                        <input class="sinUp-formul-form-input" type="text" id="firstName" v-model="firstName"
+                        required><br>
+                        <label for="lastName">Last Name:</label>
+                        <input class="sinUp-formul-form-input" type="text" id="lastName" v-model="lastName"
+                        required><br>                            
+                        <label for="email">E-mail :    </label>
+                        <input class="sinUp-formul-form-input" type="email" id="email" v-model="email" required><br>
+                        <label for="password">Password:</label>
+                        <input class="sinUp-formul-form-input" type="password" id="password" v-model="password"
+                        required><br>
+                        <button class="sinUp-formul-form-button-sign" @click.prevent="signUp" type="submit">
+                            Create Account
+                        </button>
+                    </form>
+                    <button class="sinUp-formul-form-button" @click.prevent="mostrarLog">Log In</button>
+                </div>
+                <div v-else>
+                    <form @submit.prevent="login" class="sinUp-formul-form">
+                        <h2 class="sinUp-formul-main-h2">Log In</h2>
+                        <label for="loginEmail">E-mail :     </label>
+                        <input class="sinUp-formul-form-input" type="email" id="loginEmail" v-model="email" required><br>        
+                        <label for="loginPassword">Password:</label>
+                        <input class="sinUp-formul-form-input" type="password" id="loginPassword" v-model="password"
+                        required><br>        
+                        <button class="sinUp-formul-form-button-sign" type="submit">Log In</button>
+                    </form>
+                    <button class="sinUp-formul-form-button" @click.prevent="mostrarSingUp">Create Account</button>
+                </div>
+                <div v-if="showAlert" class="alert-container">
+                    <div class="alert-box">
+                        <div class="alert-close" @click="showAlert = false">X</div>
+                        <p>Hubo un error. Inténtalo de nuevo.</p>
                     </div>
-
-                    <div v-else>
-
-                        <form @submit.prevent="login" class="sinUp-formul-form">
-                            <h2 class="sinUp-formul-main-h2">Iniciar Sesión</h2>
-                            <label for="loginEmail">Correo Electrónico:</label>
-                            <input class="sinUp-formul-form-input" type="email" id="loginEmail" v-model="email" required><br>
-        
-                            <label for="loginPassword">Contraseña:</label>
-                            <input class="sinUp-formul-form-input" type="password" id="loginPassword" v-model="password"
-                                required><br>
-        
-                            <button class="sinUp-formul-form-button-sign" type="submit">Iniciar Sesión</button>
-                        </form>
-                        <button class="sinUp-formul-form-button" @click.prevent="mostrarSingUp">Create una Cuenta</button>
-                    </div>
-
-                    <div v-if="showAlert" class="alert-container">
-                        <div class="alert-box">
-                            <div class="alert-close" @click="showAlert = false">X</div>
-                            <p>Hubo un error. Inténtalo de nuevo.</p>
-                        </div>
-                    </div>
-
-                </section>
-
-                <section class="video_container">
-                   <video class="video_container_video" autoplay muted loop>
-                       <source src="../image/pexels-rodnae-productions-7822017 (Original).mp4" type="video/mp4">
-                   </video>
-                </section>
+                </div>
             </div>
-
-        </main>
-
-
-    </div>
-
-
+            <div class="video_container">
+                <img class="video_container_video" src="../image/Homebankingbing.jpg" alt="HomebankingIA">
+            </div>
+    </main>
+</div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="../js/index.js"></script>
 </body>
-
 </html>

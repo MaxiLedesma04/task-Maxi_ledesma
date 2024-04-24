@@ -1,19 +1,18 @@
 package com.mindhub.homebanking.controllers;
 
 import com.mindhub.homebanking.dtos.AccountDTO;
-import com.mindhub.homebanking.dtos.ClientDTO;
 import com.mindhub.homebanking.dtos.TransactionAplicationDTO;
 import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.service.AccountService;
 import com.mindhub.homebanking.service.CardService;
 import com.mindhub.homebanking.service.ClientService;
 import com.mindhub.homebanking.service.TransactionService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDate;
 import java.util.Set;

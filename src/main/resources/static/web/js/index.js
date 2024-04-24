@@ -51,7 +51,6 @@ const options = {
         },
 
         signUp(event) {
-            console.log("HOLA JULI")
             event.preventDefault()
             axios.post('/api/clients', `firstName=${this.firstName}&lastName=${this.lastName}&email=${this.email}&password=${this.password}`, 
             {headers: {'content-type': 'application/x-www-form-urlencoded'}})

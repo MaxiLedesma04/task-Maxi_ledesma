@@ -1,8 +1,8 @@
 package com.mindhub.homebanking.models;
 
-import org.hibernate.annotations.GenericGenerator;
+import com.mindhub.homebanking.dtos.ClientDTO;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,7 +10,6 @@ import java.util.Set;
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name="native", strategy = "native")
     private Long id;
     private String firstName;
     /*
@@ -21,11 +20,11 @@ public class Client {
     * */
     private String lastName;
     private String email;
-    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private Set<Accounts> accounts = new HashSet<>();
-    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private Set<ClientLoan> clientLoans = new HashSet<>();
-    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private Set<Card> cards = new HashSet<>(); //Crea una nueva instancia en memoria del objeto HashSet<>()
     private String password;
 

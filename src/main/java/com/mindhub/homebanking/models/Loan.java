@@ -1,11 +1,8 @@
 package com.mindhub.homebanking.models;
 
-import net.minidev.json.annotate.JsonIgnore;
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
@@ -15,7 +12,6 @@ import static java.util.stream.Collectors.toSet;
 public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
     private Long id;
     private String name;
     private long maxAmount;

@@ -1,17 +1,14 @@
 package com.mindhub.homebanking.models;
 
-import org.hibernate.annotations.GenericGenerator;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
-
-    private Long Id;
+    private Long id;
 
     private double amount;
     private String description;
@@ -23,7 +20,7 @@ public class Transaction {
 
     private boolean isActive;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name="account_id")
     private Accounts account;
 
@@ -95,6 +92,6 @@ public class Transaction {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 }

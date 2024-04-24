@@ -2,7 +2,6 @@ package com.mindhub.homebanking.dtos;
 
 import com.mindhub.homebanking.models.Loan;
 
-import javax.persistence.ElementCollection;
 import java.util.Set;
 
 public class LoanDTO {

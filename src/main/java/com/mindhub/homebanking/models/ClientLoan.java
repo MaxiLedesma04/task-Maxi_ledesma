@@ -1,20 +1,16 @@
 package com.mindhub.homebanking.models;
 
-import org.hibernate.annotations.GenericGenerator;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 @Entity
 public class ClientLoan {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
     private Long id;
     private Double amount;
 
     private Integer payments;
-   @ManyToOne(fetch = FetchType.EAGER)
+   @ManyToOne
    @JoinColumn(name = "Loan")
     private Loan loan;
 

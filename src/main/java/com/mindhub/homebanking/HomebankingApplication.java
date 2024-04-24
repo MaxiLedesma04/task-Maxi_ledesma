@@ -8,8 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -114,11 +113,11 @@ public class HomebankingApplication {
 			jorge.addCard(card3);
 			cardRepository.save(card3);
 
-//			ClientLoan clientLoan3 = new ClientLoan(100000.10,
-//					24,24,true);
-//
-//			ClientLoan clientLoan4 = new ClientLoan(200000.0,
-//					36,24,true);
+			ClientLoan clientLoan3 = new ClientLoan(100000.10,
+					24,24,true);
+
+			ClientLoan clientLoan4 = new ClientLoan(200000.0,
+					36,24,true);
 
 
 		};

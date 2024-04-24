@@ -1,9 +1,10 @@
 package com.mindhub.homebanking.models;
 
-import net.minidev.json.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -11,7 +12,6 @@ import java.time.LocalDateTime;
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
     private Long id;
     private String cardHolder;
     private CardType type;
@@ -22,7 +22,7 @@ public class Card {
     private  LocalDate fromDate;
     private boolean isActive;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name="client_id")
     private Client client;
 

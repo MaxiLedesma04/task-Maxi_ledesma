@@ -9,7 +9,6 @@ import java.util.Arrays;
 
 @RepositoryRestResource
 public interface CardRepository extends JpaRepository<Card, Long> {
-
    Card findByNumber(String cardNumber);
 
 }

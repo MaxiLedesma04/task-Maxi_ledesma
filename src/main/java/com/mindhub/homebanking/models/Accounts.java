@@ -3,9 +3,8 @@ package com.mindhub.homebanking.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mindhub.homebanking.dtos.AccountDTO;
-import org.hibernate.annotations.GenericGenerator;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -15,7 +14,6 @@ import java.util.Set;
 public class Accounts {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
     private long id;
     private String number;
     private LocalDate dateTime;
@@ -23,7 +21,7 @@ public class Accounts {
     private boolean active;
 
     private AccountType type;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name="client_id")
     private Client client;
     @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
