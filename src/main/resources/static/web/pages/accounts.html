@@ -13,9 +13,7 @@
 </head>
 
 <body>
-
     <div id="app" class="">
-
         <header class="cabeza-b">
             <nav class="navbar navbar-expand-lg z-3">
                 <div class="container-fluid">
@@ -27,16 +25,16 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="#">Cuentas</a>
+                                <a class="nav-link" aria-current="page" href="#">Accounts</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="./cards.html">Tarjetas</a>
+                                <a class="nav-link" href="./cards.html">Cards</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="./transactions.html">Transferencias</a>
+                                <a class="nav-link" href="./transactions.html">Transfers</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="./loan.html">Prestamos</a>
+                                <a class="nav-link" href="./loan.html">Loans</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <ul class="dropdown-menu">
@@ -48,7 +46,7 @@
                         </ul>
                     </div>
                 </div>
-                <button @click="logout" class="Btn me-4">
+                <button @click="logout" class="Btn">
                     <div class="sign"><svg viewBox="0 0 512 512">
                             <path
                                 d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
@@ -60,18 +58,8 @@
                     </div>
                 </button>
             </nav>
-
-
             <div class="video_Header_btn">
                 <div id="carouselExampleIndicators" class="calecita carousel slide">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                            class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                            aria-label="Slide 3"></button>
-                    </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img src="../image/Familia-Banco-1.png" class="d-block w-100" alt="...">
@@ -83,62 +71,59 @@
                             <img src="../image/iStock-1056867534-1024x683.jpg" class="d-block w-100" alt="...">
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    <button class="carousel-control-prev flechitas" type="button" data-bs-target="#carouselExampleIndicators"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    <button class="carousel-control-next flechitas" type="button" data-bs-target="#carouselExampleIndicators"
                         data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
                 <div class="video_Header_btn_text">
-                    <button class="Btn-header" type="submit" @click.prevent="createAcc"><a
-                            href="">Crearcuenta</a></button>
-                    <button class="Btn-header" type="submit"><a href="./create-cards.html">Crear Tarjetas</a></button>
-                    <button class="Btn-header" type="submit"><a href="./transactions.html">Transferencias</a></button>
+                    <button class="Btn-header" type="submit" @click.prevent="createAcc"><a href="">New Account</a></button>
+                    <button class="Btn-header" type="submit"><a href="./create-cards.html">Create Cards</a></button>
+                    <button class="Btn-header" type="submit"><a href="./transactions.html">Transfers</a></button>
                 </div>
+
             </div>
         </header>
-
         <main class="cuerpa">
             <div class="div_saludo">
-                <h1 class="fw-bold">El mejor servicio a su dispocicion</h1>
+                <h1 class="fw-bold">Welcome</h1>
             </div>
             <div class="cuerpa_seccion_uno">
                 <section class="cuerpa_seccion">
                     <div class="cuerpa_seccion_carrito"><img src="../image/carrito.png" alt="carrito"></div>
-                    <h3>Tienda</h3>
-                    <h5>Te invitamos a ver las ofertas especiales para vos</h5>
-                    <a href="../../otro.html">Entra a la tienda -></a>
+                    <h3>Market</h3>
+                    <h5>We invite you to see the special offers</h5>
+                    <a href="../../otro.html">Go to the Market -></a>
                 </section>
                 <section class="cuerpa_seccion">
                     <div class="cuerpa_seccion_carrito"><img src="../image/Jubilado.png" alt="jubilados"></div>
-                    <h3>Palabras Mayores</h3>
-                    <h5>Nuestro programa exclusivo para jubilados</h5>
-                    <a href="../../otro.html">Conoce mas -></a>
+                    <h3>Big words</h3>
+                    <h5>Our exclusive program for retirees</h5>
+                    <a href="../../otro.html">Know more -></a>
                 </section>
                 <section class="cuerpa_seccion">
                     <div class="cuerpa_seccion_carrito"><img src="../image/diagrama.png" alt="jubilados"></div>
-                    <h3>Educacion Financiera</h3>
-                    <h5>Aprende a operar como un especialista en finanzas</h5>
-                    <a href="../../otro.html">Conoce mas -></a>
+                    <h3>Financial Education</h3>
+                    <h5>Become a financial specialist</h5>
+                    <a href="../../otro.html">Know more -></a>
                 </section>
                 </section>
                 <section class="cuerpa_seccion">
                     <div class="cuerpa_seccion_carrito"><img src="../image/tutoriales.png" alt="jubilados"></div>
-                    <h3>Tutoriales instructivos</h3>
-                    <h5>Conoce como operar con el banco</h5>
-                    <a href="../../otro.html">Conoce mas -></a>
+                    <h3>Instructional Tutorials</h3>
+                    <h5>Know how to operate with the bank</h5>
+                    <a href="../../otro.html">Know more -></a>
                 </section>
                 </section>
             </div>
-
             <div class="cuenta_texto">
-                <h2 class="cuenta_texto_titulo_h2">Informacion de Usuario</h2>
-                <h4 class="cuenta_texto_titulo">Cuentas:</h4>
+                <h2 class="cuenta_texto_titulo_h2">User Accounts:</h2>
             </div>
             <div class="contenedor_tarjeta">
                 <template v-if="accounts.length > 0" v-for="account of accounts" :key="account.number">
@@ -165,9 +150,8 @@
                 </template>
             </div>
             <section class="prestamos">
-                <h3>Prestamos</h3>
+                <h3>Loans</h3>
             </section>
-
             <div class="contenedor_loan d-flex justify-content-center w-100">
                 <template v-if="loans.length > 0" v-for="loan of loans">
                     <section class="tarjeta">
@@ -205,12 +189,7 @@
 
                 </template>
             </div>
-
-
-
         </main>
-
-
         <footer class="pie">
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -260,10 +239,6 @@
         </footer>
 
     </div>
-
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"

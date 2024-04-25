@@ -15,12 +15,25 @@
     align-items: center;
 }
 .cuerpa {
-    min-height: 80vh;
+    margin-top: 0;
+    min-height: 100vh;
+    background-color: #39B2BF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cuerpa h1{
+    font-weight: 700;
+    font-size: 3rem;
+    padding: 10px;
+    color: #00fd3f;
+    background: #022952cb;
+    border-radius: 10px;
 }
 .cuerpa_seccion{
     border: solid 2px rgb(143, 143, 143);
     border-radius: 2%;
-
 }
 .cuerpa_seccion:hover{
     transform: scale(1.1);
@@ -38,10 +51,11 @@
     margin-top: 3rem;
     font-size: 25px;
     color: #008000;
-    background-color: rgb(254, 255, 255);
-    border-radius: 10%;
-    text-align: left;
-    margin-left: 0.5rem;
+    background: linear-gradient(#2de9bd, #97eeda,#4cd3e7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
     transition: transform 0.2s, z-index 0.2s;
 }
 .cuerpa h5{
@@ -51,16 +65,17 @@
 .cuerpa a{
     text-decoration: none;
     margin-top: 0.5rem;
-    font-size: large;
+    font-size: 25px;
     display: flex;
     justify-content: flex-start;
     margin-left: 2rem;
-    color: #008000;
+    color: #0aff0a;
 }
 .cuerpa a:hover {
     transform: scale(1.1);
     font-size: x-large; 
     z-index: 1;
+    color: #0056b3;
 }
 .cabeza-b {
     width: 100%;
@@ -74,51 +89,49 @@
 .video_Header{
     width: 100%;
     background-size: cover;
-    position: relative;
 }
 .calecita {
-    height: 22rem;
+    height: 20rem;
     width: 100%;
-    background-image: linear-gradient(0, rgba(254, 178, 45, 0.31) 0%, rgba(254, 178, 45, 0.31) 16.667%,rgba(233, 154, 68, 0.31) 16.667%, rgba(233, 154, 68, 0.31) 33.334%,rgba(212, 131, 91, 0.31) 33.334%, rgba(212, 131, 91, 0.31) 50.001000000000005%,rgba(191, 107, 115, 0.31) 50.001%, rgba(191, 107, 115, 0.31) 66.668%,rgba(170, 84, 138, 0.31) 66.668%, rgba(170, 84, 138, 0.31) 83.33500000000001%,rgba(149, 60, 161, 0.31) 83.335%, rgba(149, 60, 161, 0.31) 100.002%),linear-gradient(90deg, rgb(77, 244, 119) 0%, rgb(77, 244, 119) 14.286%,rgb(76, 233, 127) 14.286%, rgb(76, 233, 127) 28.572%,rgb(75, 221, 136) 28.572%, rgb(75, 221, 136) 42.858%,rgb(74, 210, 144) 42.858%, rgb(74, 210, 144) 57.144%,rgb(72, 198, 152) 57.144%, rgb(72, 198, 152) 71.42999999999999%,rgb(71, 187, 161) 71.43%, rgb(71, 187, 161) 85.71600000000001%,rgb(70, 175, 169) 85.716%, rgb(70, 175, 169) 100.002%);
+    background-color: #39B2BF;
     font-weight: 600;
-    position: relative;
-
+    padding-top: 2rem;
 }
 .calecita img {
     object-fit: contain;
     height: 30rem;
-    background-image: linear-gradient(0, rgba(254, 178, 45, 0.31) 0%, rgba(254, 178, 45, 0.31) 16.667%,rgba(233, 154, 68, 0.31) 16.667%, rgba(233, 154, 68, 0.31) 33.334%,rgba(212, 131, 91, 0.31) 33.334%, rgba(212, 131, 91, 0.31) 50.001000000000005%,rgba(191, 107, 115, 0.31) 50.001%, rgba(191, 107, 115, 0.31) 66.668%,rgba(170, 84, 138, 0.31) 66.668%, rgba(170, 84, 138, 0.31) 83.33500000000001%,rgba(149, 60, 161, 0.31) 83.335%, rgba(149, 60, 161, 0.31) 100.002%),linear-gradient(90deg, rgb(77, 244, 119) 0%, rgb(77, 244, 119) 14.286%,rgb(76, 233, 127) 14.286%, rgb(76, 233, 127) 28.572%,rgb(75, 221, 136) 28.572%, rgb(75, 221, 136) 42.858%,rgb(74, 210, 144) 42.858%, rgb(74, 210, 144) 57.144%,rgb(72, 198, 152) 57.144%, rgb(72, 198, 152) 71.42999999999999%,rgb(71, 187, 161) 71.43%, rgb(71, 187, 161) 85.71600000000001%,rgb(70, 175, 169) 85.716%, rgb(70, 175, 169) 100.002%);
+    background-color: #39B2Bf;
     font-weight: 600;
 }
 .calecita-cards{
     width: 100%;
     height: 30rem;
-    background-image: linear-gradient(0, rgba(254, 178, 45, 0.31) 0%, rgba(254, 178, 45, 0.31) 16.667%,rgba(233, 154, 68, 0.31) 16.667%, rgba(233, 154, 68, 0.31) 33.334%,rgba(212, 131, 91, 0.31) 33.334%, rgba(212, 131, 91, 0.31) 50.001000000000005%,rgba(191, 107, 115, 0.31) 50.001%, rgba(191, 107, 115, 0.31) 66.668%,rgba(170, 84, 138, 0.31) 66.668%, rgba(170, 84, 138, 0.31) 83.33500000000001%,rgba(149, 60, 161, 0.31) 83.335%, rgba(149, 60, 161, 0.31) 100.002%),linear-gradient(90deg, rgb(77, 244, 119) 0%, rgb(77, 244, 119) 14.286%,rgb(76, 233, 127) 14.286%, rgb(76, 233, 127) 28.572%,rgb(75, 221, 136) 28.572%, rgb(75, 221, 136) 42.858%,rgb(74, 210, 144) 42.858%, rgb(74, 210, 144) 57.144%,rgb(72, 198, 152) 57.144%, rgb(72, 198, 152) 71.42999999999999%,rgb(71, 187, 161) 71.43%, rgb(71, 187, 161) 85.71600000000001%,rgb(70, 175, 169) 85.716%, rgb(70, 175, 169) 100.002%);
     font-weight: 600;
 }
 .calecita-cards img{
     object-fit: contain;
     height: 30rem;
-    position: absolute;
+}
+.flechitas{
+    padding-top: 12rem;
 }
 .video_Header_btn_text{
-    top: 30rem;
+    top: 35rem;
     width: 100%;
     height: 4rem;
     font-size: 1.5rem;
     font-weight: 600;
     text-align: center;
-    padding-bottom: 3rem;
     display: flex;
     justify-content: center;
     position: absolute;
     z-index: 2;
+    background-color: #39b2bf00;
 }
 .video_Header_btn_text a{
     height: 3rem;
     border-radius: 20px;
     text-decoration: none;
-    color: #ffffff; 
     padding-left: 0.5rem;
     padding-right: 0.5rem;
 }
@@ -127,11 +140,9 @@
     margin-left: 2rem;
     display: grid;
     border-radius: 20px;
-    background-color: #38960d;
-    color: #ffffff;
+    background-color: rgb(68, 117, 243);
     font-weight: bold;
     place-content: center;
-    box-shadow: 0px -5px rgba(0, 0, 0, 0.733);
     transition: transform 0.5s ease-in-out;
 }
 .Btn-header:hover{
@@ -139,10 +150,13 @@ box-shadow: -2px -2px 5px black,
 2px 2px 5px black;
 animation: latido 1.5s infinite
 }
+.Btn-header a{
+    color: #08e840;
+}
 .navbar{
-    height: 4rem;
+    height: 7rem;
     width: 100%;
-        background-image: linear-gradient(0, rgba(254, 178, 45, 0.31) 0%, rgba(254, 178, 45, 0.31) 16.667%,rgba(233, 154, 68, 0.31) 16.667%, rgba(233, 154, 68, 0.31) 33.334%,rgba(212, 131, 91, 0.31) 33.334%, rgba(212, 131, 91, 0.31) 50.001000000000005%,rgba(191, 107, 115, 0.31) 50.001%, rgba(191, 107, 115, 0.31) 66.668%,rgba(170, 84, 138, 0.31) 66.668%, rgba(170, 84, 138, 0.31) 83.33500000000001%,rgba(149, 60, 161, 0.31) 83.335%, rgba(149, 60, 161, 0.31) 100.002%),linear-gradient(90deg, rgb(77, 244, 119) 0%, rgb(77, 244, 119) 14.286%,rgb(76, 233, 127) 14.286%, rgb(76, 233, 127) 28.572%,rgb(75, 221, 136) 28.572%, rgb(75, 221, 136) 42.858%,rgb(74, 210, 144) 42.858%, rgb(74, 210, 144) 57.144%,rgb(72, 198, 152) 57.144%, rgb(72, 198, 152) 71.42999999999999%,rgb(71, 187, 161) 71.43%, rgb(71, 187, 161) 85.71600000000001%,rgb(70, 175, 169) 85.716%, rgb(70, 175, 169) 100.002%);
+    background: linear-gradient(#2de9bd, #97eeda,#4cd3e7);
     font-family: Rubik, sans-serif, sans-serif;
     position: sticky;
 }
@@ -161,9 +175,10 @@ box-shadow: -2px -2px 5px black,
 }
 .nav-link{
     width: 12rem;
-    font-size: 1rem;
-    color: black;
-    font-weight: 600;
+    font-size: 1.5rem;
+    background-color: #0057b359; 
+    color: #022952;
+    font-weight: bold;
     border-radius: 20px;
     display: flex;
     align-items: flex-start;
@@ -183,19 +198,19 @@ box-shadow: -2px -2px 5px black,
   }
 .div_saludo {
     width: 100% !important;
-    margin-top: 15rem;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     display: flex;
     justify-content: center;
     text-align: center;
+    padding-top: 10rem;
 }
 .div_saludo h1{
-    width: 90%;
+    width: 72%;
     padding: 1rem;
     font-size: 4rem;
     border-radius: 10%;
-    background-color: #77df7f7e;
-
+    background-color: #0057b359; 
+    color: #00fd3f;
 }
 .cuerpa_seccion_uno{
     margin-top: 3rem;
@@ -210,34 +225,29 @@ box-shadow: -2px -2px 5px black,
     height: 15rem;
     color: #202020;
     text-align: center;
+    background: #0057b39e;
 }
 .cuerpa_seccion img{
     width: 10%;
     height: 15%;
 }
-.cuerpa_seccion h2{
-    padding: 0;
-    margin: 0;
-}
 .cuenta_texto{
-    width: 50%;
+    width: 45%;
     padding: auto;
     margin-top: 5rem;
-    margin-left: 2rem;
     margin-bottom: 1rem;
+    transform: translateX(-30%);
+    background: #0056b3;
     display: flex;
-    flex-direction: column;
-
-}
-.cuenta_texto_titulo{
-    width: 50%;
-    font-size: xx-large;
+    justify-content: center;
+    border-radius: 30%;
 }
 .cuenta_texto_titulo_h2{
     width: 80%;
-    color: #008000;
-    font-weight: 600;
-
+    color: #08e840;
+    font-weight: 800;
+    font-size: 3rem;
+    text-align: center;
 }
 .contenedor_tarjeta {
     width: 50rem;
@@ -245,7 +255,7 @@ box-shadow: -2px -2px 5px black,
     justify-content: space-between;
     margin-left: 5rem;
     margin-top: 4rem;
-    margin-bottom: 4rem;
+    /* margin-bottom: 4rem; */
 }
 .tarjeta {
     width: 30rem;
@@ -287,7 +297,7 @@ box-shadow: -2px -2px 5px black,
     width: 50rem;
     display: flex;
     margin-top: 4rem;
-    margin-bottom: 6rem;
+    /* margin-bottom: 1rem; */
 }
 
 .prestamos {
@@ -297,13 +307,16 @@ box-shadow: -2px -2px 5px black,
     margin-top: 10rem;
     width: 100%;
     height: 10rem;
-    color: #fff;
     font-weight: bolder;
-    background-image: url(../image/Fondo-tarjeta-verde.avif);
+    /* background: #0056b3; */
 }
 .prestamos h3{
+    width: 45%;
     margin: 0;
     font-size: 6rem;
+    color: #08e840;
+    font-weight: 800;
+    background: #0056b3;
 }
 .table {
     margin-left: 10rem;
@@ -492,11 +505,11 @@ box-shadow: -2px -2px 5px black,
     align-items: flex-end;
     text-align: start; 
     padding: 1rem;
+    background: #0057b39a;
 }
 .pie a{
     text-decoration: none;
 }
-
 .body-sinUp{
     font-family: Arial, sans-serif;
     display: flex;
@@ -505,7 +518,7 @@ box-shadow: -2px -2px 5px black,
 .sinUp-formul-header{
     width: 100%;
     height: 20vh;
-    background-image: linear-gradient(#2de9bd, #97eeda,#4cd3e7);
+    background: linear-gradient(#2de9bd, #97eeda,#4cd3e7);
     font-family: Rubik, sans-serif, sans-serif;
     display: flex;
     flex-wrap: wrap;
@@ -672,9 +685,10 @@ box-shadow: -2px -2px 5px black,
       transform: scale(1);
     }
   }
-.Btn {
+.Btn{
     position: absolute;
     z-index: 2222;
+    margin-right: 3rem;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -773,14 +787,6 @@ box-shadow: -2px -2px 5px black,
 [v-cloak] {
     display: none !important;
 }
-.crearTarjeta_contenedor{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-
-}
 .valid_thru{
     font-size: 1rem;
     color: red !important;
@@ -788,55 +794,53 @@ box-shadow: -2px -2px 5px black,
 .form-container_main{
     display: flex;
     justify-content: center;
+    background-color: #39B2BF
 }
 .form-container {
     text-align: center;
+    padding: 0.5rem;
     margin-top: 50px;
     margin-bottom: 50px;
     width: 60%;
-    /* padding-left: 20rem;
-    padding-right: 20rem; */
-    background-color: #fff;
+    background-color:#0056b3;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
-
 .form-title {
-    color: #333;
+    color: #00fd3f;
 }
 
 .form-label {
-    font-size: 18px;
+    font-size: 3rem;
+    font-weight: 800;
     margin-top: 10px;
-    color: #333;
+    color: #022952;
 }
 .form-radio-group {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 20px;
+    gap: 45px;
+    font-weight: 700;
+    font-size: 1.5rem;
 }
 
 .form-radio-input {
-    margin-right: 5px;
+    margin-right: 3px;
 }
-
-.form-radio-label {
-    font-size: 16px;
-}
-
 .form-select {
     width: 100%;
     font-size: 16px;
     padding: 10px;
     margin-top: 20px;
-    border: 1px solid #ccc;
+    background-color: #2de9bd;
+    border: 1px solid #4cd3e7;
     border-radius: 5px;
 }
-
 .form-button {
-    background-color: #4CAF50;
-    color: #fff;
-    font-size: 18px;
+    background-color: #00fd3f;
+    color: #022952;
+    font-size: 2rem;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -882,10 +886,21 @@ box-shadow: -2px -2px 5px black,
     margin-top: 1rem;
 }
 .card-body-main{
+    background: #39B2BF;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
+}
+.prestamos-body{
+    background-color: #39B2BF;
+}
+.cuentas-propias{
+    background: #39B2BF;
+}
+.div_cuentas h1{
+    position: absolute;
+    background: #39B2BF;
 }

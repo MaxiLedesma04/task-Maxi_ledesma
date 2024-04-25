@@ -76,12 +76,12 @@
               <img src="../image/iStock-1056867534-1024x683.jpg" class="d-block w-100" alt="...">
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+          <button class="carousel-control-prev flechitas" type="button" data-bs-target="#carouselExampleIndicators"
             data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+          <button class="carousel-control-next flechitas" type="button" data-bs-target="#carouselExampleIndicators"
             data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
@@ -92,14 +92,18 @@
     </header>
     <main class="form-container_main">
       <div class="form-container">
-        <h1 class="form-title">- Obtener nueva Tarjeta -</h1>
+        <h1 class="form-title">- Get a New Card -</h1>
         <form id="card-form">
-            <label for="card-type" class="form-label">Tipo de Tarjeta</label>
+            <label for="card-type" class="form-label">Crad Type</label>
             <div class="form-radio-group">
+              <div>
                 <input v-model="type" value="DEBIT" class="form-radio-input" type="radio" name="card-type" id="debit" required>
                 <label class="form-radio-label" for="debit"> DEBIT </label>
+              </div>
+              <div>
                 <input v-model="type" value="CREDIT" class="form-radio-input" type="radio" name="card-type" id="credit" required>
                 <label class="form-radio-label" for="credit"> CREDIT </label>
+              </div>                
             </div>
             <select v-model="color" class="form-select" aria-label="Select card" required>
                 <option selected value="">- CARDS -</option>
