@@ -20,8 +20,8 @@ import static com.mindhub.homebanking.models.AccountType.SAVINGS;
 
 @SpringBootApplication
 public class HomebankingApplication {
-//	@Autowired
-//	 private PasswordEncoder passwordEncoder;
+
+
 
 
 	public static void main(String[] args) {
