@@ -158,7 +158,6 @@ animation: latido 1.5s infinite
     width: 100%;
     background: linear-gradient(#2de9bd, #97eeda,#4cd3e7);
     font-family: Rubik, sans-serif, sans-serif;
-    position: sticky;
 }
 .navbar-nav{
     gap: 1rem;
@@ -903,4 +902,19 @@ box-shadow: -2px -2px 5px black,
 .div_cuentas h1{
     position: absolute;
     background: #39B2BF;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 597px){
+    .Btn{
+        background-color: #00fd3f;
+        transform: translate(350px, 0px);
+        position: absolute;
+    }
+}
+@media only screen and (min-width: 598px) and (max-width: 768px){
+    .Btn{
+        background-color: #00fd3f;
+        transform: translate(450px, 0px);
+        position: absolute;
+    }
 }

@@ -51,14 +51,6 @@
             </nav>
             <div class="video_Header_btn">
                 <div id="carouselExampleIndicators" class="calecita carousel slide">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                            class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                            aria-label="Slide 3"></button>
-                    </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img src="../image/Familia-Banco-1.png" class="d-block w-100" alt="...">
@@ -113,14 +105,14 @@
       </div>
         <div class="d-flex flex-column gap-2 align-items-center justify-content-center">
           <div class="input-group mt-3 d-flex flex-column align-items-center">
-           <label for="">Monto<input type="number" placeholder="Ejemplo: 100" class="form-control" v-model="amount"
+           <label for="">Amount<input type="number" placeholder="Ejemplo: 100" class="form-control" v-model="amount"
              aria-label="Example text with button addon" aria-describedby="button-addon1"></label>
           </div>
           <div class="input-group mt-3 d-flex flex-column align-items-center">
-           <label for="">Descripcion<input type="text" placeholder="Descripcion" v-model="description" class="form-control" aria-label="Example text with button addon" aria-describedby="button-addon1"></label>
+           <label for="">Description<input type="text" placeholder="Description" v-model="description" class="form-control" aria-label="Example text with button addon" aria-describedby="button-addon1"></label>
           </div>
           <div class="input-group my-3 d-flex justify-content-center align-items-center">
-          <button class="btn btn-dark" @click.prevent="newTransfer">ENVIAR</button>
+          <button class="btn btn-dark" @click.prevent="newTransfer">SEND</button>
           </div>
         </div>
         </form>
@@ -128,7 +120,7 @@
         <form class="d-flex flex-column " v-if="showForm2">
          <div class="d-flex flex-column">
         <section class="send mx-2 d-flex align-items-center flex-column gap-1">
-          <h3 class="text-white">ENVIAR</h3>
+          <h3 class="text-white">SEND</h3>
           <select>
             <template v-for="account of accounts">
             <option class="m-1" :value="account.number">{{account.number}} || USD {{account.balance}}</option>
@@ -137,19 +129,19 @@
         </section>
         <section class="send mx-2 d-flex align-items-center justify-content-center flex-column gap-1">
           <div class="input-group">
-            <label for="dest" class="ms-3  fs-5 fw-bold">CUENTA DE DETINO<input type="text" placeholder="Ejemplo: VIN-001" class="form-control" v-model="destination"
+            <label for="dest" class="ms-3  fs-5 fw-bold">DESTINI ACCOUNT<input type="text" placeholder="Example: VIN-001" class="form-control" v-model="destination"
               aria-label="Example text with button addon" aria-describedby="button-addon1"></label>
           </div>
           <div class="d-flex flex-column ">
           <div class="input-group">
-            <label for="amount" class="fs-5 fw-bold" >Monto <input type="number" placeholder="Ejemplo: 100" class="form-control" v-model="amount"
+            <label for="amount" class="fs-5 fw-bold" >Amount <input type="number" placeholder="Example: 100" class="form-control" v-model="amount"
               aria-label="Example text with button addon" aria-describedby="button-addon1"></label>
           </div>
           <div class="input-group">
-            <label for="Description" class="fs-5 fw-bold">Descripcion<input type="text" placeholder="Ejemplo Alquileres" v-model="description" class="form-control" aria-label="Example text with button addon" aria-describedby="button-addon1"></label>
+            <label for="Description" class="fs-5 fw-bold">Description<input type="text" placeholder="Example Alquileres" v-model="description" class="form-control" aria-label="Example text with button addon" aria-describedby="button-addon1"></label>
           </div>
           <div class="input-group my-3 d-flex justify-content-center align-items-center">
-          <button class="btn btn-dark" @click.prevent="newTransfer">ENVIAR </button>
+          <button class="btn btn-dark" @click.prevent="newTransfer">SEND </button>
           </div>
         </div>
         </section>
