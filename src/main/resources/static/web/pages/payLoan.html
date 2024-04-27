@@ -93,14 +93,14 @@
   <h1>Pay Loans</h1>
     <form class="loan-form">
       <div class="form-group">
-        <select name="idLoan" id="" >
+        <select name="idLoan" >
           <template v-for="loan in loans" v-model="selectLoan">
             <option :value="loan.idClientLoan">{{loan.name}}</option>
           </template>
         </select>
       </div>
       <div class="form-group">
-        <select name="nameacc" id="" >
+        <select name="nameacc">
             <template v-for="account in originAccounts">
               <option :value="account.id">{{account.number}}</option>
             </template>

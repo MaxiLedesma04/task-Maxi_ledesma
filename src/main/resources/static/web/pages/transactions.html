@@ -105,11 +105,11 @@
       </div>
         <div class="d-flex flex-column gap-2 align-items-center justify-content-center">
           <div class="input-group mt-3 d-flex flex-column align-items-center">
-           <label for="">Amount<input type="number" placeholder="Ejemplo: 100" class="form-control" v-model="amount"
+           <label >Amount<input type="number" placeholder="Ejemplo: 100" class="form-control" v-model="amount"
              aria-label="Example text with button addon" aria-describedby="button-addon1"></label>
           </div>
           <div class="input-group mt-3 d-flex flex-column align-items-center">
-           <label for="">Description<input type="text" placeholder="Description" v-model="description" class="form-control" aria-label="Example text with button addon" aria-describedby="button-addon1"></label>
+           <label>Description<input type="text" placeholder="Description" v-model="description" class="form-control" aria-label="Example text with button addon" aria-describedby="button-addon1"></label>
           </div>
           <div class="input-group my-3 d-flex justify-content-center align-items-center">
           <button class="btn btn-dark" @click.prevent="newTransfer">SEND</button>
@@ -129,22 +129,23 @@
         </section>
         <section class="send mx-2 d-flex align-items-center justify-content-center flex-column gap-1">
           <div class="input-group">
-            <label for="dest" class="ms-3  fs-5 fw-bold">DESTINI ACCOUNT<input type="text" placeholder="Example: VIN-001" class="form-control" v-model="destination"
+            <label class="ms-3  fs-5 fw-bold">DESTINI ACCOUNT<input type="text" placeholder="Example: VIN-001" class="form-control" v-model="destination"
               aria-label="Example text with button addon" aria-describedby="button-addon1"></label>
           </div>
           <div class="d-flex flex-column ">
           <div class="input-group">
-            <label for="amount" class="fs-5 fw-bold" >Amount <input type="number" placeholder="Example: 100" class="form-control" v-model="amount"
+            <label class="fs-5 fw-bold" >Amount <input type="number" placeholder="Example: 100" class="form-control" v-model="amount"
               aria-label="Example text with button addon" aria-describedby="button-addon1"></label>
           </div>
           <div class="input-group">
-            <label for="Description" class="fs-5 fw-bold">Description<input type="text" placeholder="Example Alquileres" v-model="description" class="form-control" aria-label="Example text with button addon" aria-describedby="button-addon1"></label>
+            <label class="fs-5 fw-bold">Description<input type="text" placeholder="Example Alquileres" v-model="description" class="form-control" aria-label="Example text with button addon" aria-describedby="button-addon1"></label>
           </div>
           <div class="input-group my-3 d-flex justify-content-center align-items-center">
           <button class="btn btn-dark" @click.prevent="newTransfer">SEND </button>
           </div>
         </div>
         </section>
+        </div>
         </form>
       </div>
     </div>
